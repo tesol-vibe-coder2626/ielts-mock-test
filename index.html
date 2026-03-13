@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Interactive Mock Test | Advanced</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        .reading-text {
+            font-family: 'Merriweather', serif;
+            line-height: 1.8;
+            color: #334155;
+        }
+        .nav-btn.active {
+            background-color: #0d9488;
+            color: white;
+            font-weight: 600;
+        }
+        .sub-nav-btn.active {
+            border-bottom: 3px solid #0d9488;
+            color: #0d9488;
+            font-weight: 700;
+        }
+        .q-input {
+            border-bottom: 2px solid #cbd5e1;
+            background: transparent;
+            outline: none;
+            padding: 2px 4px;
+            transition: border-color 0.2s;
+            width: 120px;
+            font-family: 'Inter', sans-serif;
+        }
+        .q-input:focus {
+            border-bottom-color: #0d9488;
+        }
+        audio {
+            width: 100%;
+            height: 40px;
+            border-radius: 8px;
+            outline: none;
+        }
+        audio::-webkit-media-controls-panel {
+            background-color: #f1f5f9;
+        }
+        .bullet-list li {
+            position: relative;
+            padding-left: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        .bullet-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #0d9488;
+            font-weight: bold;
+        }
+        .sub-bullet-list li::before {
+            content: '○';
+            color: #64748b;
+        }
+    </style>
+    <!-- Application Structure Plan: GitHub Pages Deployment Version. All media links converted to relative local paths to bypass Google Drive CORS restrictions. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <header class="bg-slate-900 text-white shadow-md z-10 sticky top-0">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
+            <h1 class="text-2xl font-bold tracking-tight mb-4 md:mb-0">IELTS Master<span class="text-teal-400">Class</span></h1>
+            <nav class="flex flex-wrap justify-center gap-2">
+                <button onclick="switchTab('dashboard')" id="btn-dashboard" class="nav-btn active px-4 py-2 rounded-md text-sm transition-colors hover:bg-slate-700">Dashboard</button>
+                <button onclick="switchTab('listening')" id="btn-listening" class="nav-btn px-4 py-2 rounded-md text-sm transition-colors hover:bg-slate-700">Listening</button>
+                <button onclick="switchTab('reading')" id="btn-reading" class="nav-btn px-4 py-2 rounded-md text-sm transition-colors hover:bg-slate-700">Reading</button>
+                <button onclick="switchTab('writing')" id="btn-writing" class="nav-btn px-4 py-2 rounded-md text-sm transition-colors hover:bg-slate-700">Writing</button>
+                <button onclick="switchTab('speaking')" id="btn-speaking" class="nav-btn px-4 py-2 rounded-md text-sm transition-colors hover:bg-slate-700">Speaking</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow w-full max-w-7xl mx-auto px-4 py-8">
+
+        <!-- DASHBOARD SECTION -->
+        <section id="view-dashboard" class="block animate-fade-in">
+            <div class="bg-white rounded-xl shadow-sm p-8 mb-8 border border-slate-200">
+                <h2 class="text-3xl font-bold mb-4 text-slate-800">Welcome to Mock Test 1</h2>
+                <p class="text-slate-600 mb-6 text-lg">
+                    This interactive dashboard provides a comprehensive overview of your testing environment. Designed to evaluate English as a <em>langue vivante</em>, this platform moves beyond rote memorization to assess your holistic linguistic capabilities.
+                </p>
+                <div class="bg-slate-50 border border-slate-200 rounded-lg p-6">
+                    <h3 class="text-xl font-semibold mb-6 text-slate-800 border-b border-slate-200 pb-2">Examination Structure</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-bold text-teal-700 flex items-center gap-2"><span class="text-2xl">&#127911;</span> Section 1: Listening</h4>
+                            <p class="text-slate-700 text-sm mt-1 font-semibold">40 Questions | Approx. 30 Minutes</p>
+                            <p class="text-slate-500 text-sm mt-2 leading-relaxed">Evaluates your comprehension of spoken English across four distinct audio contexts, ranging from everyday social interactions to academic lectures.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-teal-700 flex items-center gap-2"><span class="text-2xl">&#128214;</span> Section 2: Reading</h4>
+                            <p class="text-slate-700 text-sm mt-1 font-semibold">40 Questions | 60 Minutes</p>
+                            <p class="text-slate-500 text-sm mt-2 leading-relaxed">Assesses your ability to grasp primary concepts, details, and implied meanings across three rigorous academic texts.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-teal-700 flex items-center gap-2"><span class="text-2xl">&#128221;</span> Section 3: Writing</h4>
+                            <p class="text-slate-700 text-sm mt-1 font-semibold">2 Tasks | 60 Minutes</p>
+                            <p class="text-slate-500 text-sm mt-2 leading-relaxed">Requires a synthesized factual summary of visual data (Task 1) and a well-reasoned discursive essay on a contemporary issue (Task 2).</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-teal-700 flex items-center gap-2"><span class="text-2xl">&#128483;</span> Section 4: Speaking</h4>
+                            <p class="text-slate-700 text-sm mt-1 font-semibold">1-on-1 Interview | 11-14 Minutes</p>
+                            <p class="text-slate-500 text-sm mt-2 leading-relaxed">A live evaluation of your spoken fluency, coherence, and lexical resource, scheduled directly with your examiner.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LISTENING SECTION -->
+        <section id="view-listening" class="hidden animate-fade-in">
+            <div class="bg-white rounded-xl shadow-sm p-6 md:p-10 border border-slate-200">
+                <h2 class="text-3xl font-bold mb-2 text-slate-800">Section 1: Listening</h2>
+                <p class="text-slate-500 mb-6 border-b pb-4">
+                    Assess your ability to understand spoken English. You will encounter conversations and monologues. 
+                </p>
+
+                <!-- PART 1 -->
+                <div class="mb-12">
+                    <div class="flex flex-col md:flex-row justify-between md:items-center mb-4 bg-slate-100 p-3 rounded">
+                        <h3 class="text-xl font-semibold text-slate-700">Part 1: Furniture Rental Companies</h3>
+                        <div class="mt-2 md:mt-0 w-full md:w-1/2">
+                            <!-- LOCAL AUDIO REFERENCE -->
+                            <audio controls controlsList="nodownload"><source src="part1.m4a" type="audio/mpeg"></audio>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 mb-3 font-semibold text-sm">Complete the table below. Write ONE WORD AND/OR A NUMBER for each answer.</p>
+                    <div class="overflow-x-auto border border-slate-200 rounded">
+                        <table class="w-full text-left border-collapse min-w-[600px]">
+                            <thead>
+                                <tr class="bg-slate-50 border-b-2 border-slate-200">
+                                    <th class="p-3 font-semibold text-slate-700">Name of company</th>
+                                    <th class="p-3 font-semibold text-slate-700 border-l border-slate-200">Information about costs</th>
+                                    <th class="p-3 font-semibold text-slate-700 border-l border-slate-200">Additional notes</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr>
+                                    <td class="p-3 font-medium">Peak Rentals</td>
+                                    <td class="p-3 border-l border-slate-200">Prices range from $105 to $ <input type="text" class="q-input" data-q="1"> per room per month.</td>
+                                    <td class="p-3 border-l border-slate-200">The furniture is very <input type="text" class="q-input" data-q="2">.<br>Delivers in 1-2 days.<br>Special offer: free <input type="text" class="q-input" data-q="3"> with every living room set.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><input type="text" class="q-input" data-q="4"> and Oliver</td>
+                                    <td class="p-3 border-l border-slate-200">Mid-range prices.<br>12% monthly free for 5<input type="text" class="q-input" data-q="5">.</td>
+                                    <td class="p-3 border-l border-slate-200">Also offers a cleaning service.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3">Larch Furniture</td>
+                                    <td class="p-3 border-l border-slate-200">Offers cheapest prices for renting furniture and <input type="text" class="q-input" data-q="6"> items.</td>
+                                    <td class="p-3 border-l border-slate-200">Must have own <input type="text" class="q-input" data-q="7">.<br>Minimum contract length: six months.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><input type="text" class="q-input" data-q="8"> Rentals</td>
+                                    <td class="p-3 border-l border-slate-200">See the <input type="text" class="q-input" data-q="9"> for the most up-to-date prices.</td>
+                                    <td class="p-3 border-l border-slate-200"><input type="text" class="q-input" data-q="10"> are allowed within 7 days of delivery.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- PART 2 -->
+                <div class="mb-12">
+                    <div class="flex flex-col md:flex-row justify-between md:items-center mb-4 bg-slate-100 p-3 rounded">
+                        <h3 class="text-xl font-semibold text-slate-700">Part 2: Community Project</h3>
+                        <div class="mt-2 md:mt-0 w-full md:w-1/2">
+                            <!-- LOCAL AUDIO REFERENCE -->
+                            <audio controls controlsList="nodownload"><source src="part2.m4a" type="audio/mpeg"></audio>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <p class="font-medium mb-2">11. Who was responsible for starting the community project?</p>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q11" value="A" class="mr-2 accent-teal-600"> A. the castle owners</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q11" value="B" class="mr-2 accent-teal-600"> B. a national charity</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q11" value="C" class="mr-2 accent-teal-600"> C. the local council</label>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <p class="font-medium mb-2">12. How was the gold coin found?</p>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q12" value="A" class="mr-2 accent-teal-600"> A. Heavy rain had removed some of the soil.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q12" value="B" class="mr-2 accent-teal-600"> B. The ground was dug up by wild rabbits.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q12" value="C" class="mr-2 accent-teal-600"> C. A person with a metal detector searched the area.</label>
+                        </div>
+                    </div>
+
+                    <div class="p-6 border border-slate-200 rounded-lg bg-white shadow-sm">
+                        <h4 class="font-bold text-slate-800 mb-4 text-center">Bidcaster Archaeological Dig</h4>
+                        <!-- LOCAL IMAGE REFERENCE -->
+                        <img src="map.png" alt="Map of Bidcaster Dig" class="max-w-full h-auto mx-auto rounded border border-slate-200 shadow-sm mb-6 object-contain" style="max-height: 400px;">
+                        <p class="text-sm text-slate-600 mb-3 font-semibold text-center">Questions 17-20: Label the map below. Type the correct letter, A-G.</p>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+                            <div class="flex justify-between items-center bg-slate-50 p-2 rounded border border-slate-200"><span class="text-sm">17. bridge</span><input type="text" maxlength="1" class="w-8 text-center border-b-2 border-slate-400 outline-none focus:border-teal-500 uppercase font-bold"></div>
+                            <div class="flex justify-between items-center bg-slate-50 p-2 rounded border border-slate-200"><span class="text-sm">18. rubbish</span><input type="text" maxlength="1" class="w-8 text-center border-b-2 border-slate-400 outline-none focus:border-teal-500 uppercase font-bold"></div>
+                            <div class="flex justify-between items-center bg-slate-50 p-2 rounded border border-slate-200"><span class="text-sm">19. hall</span><input type="text" maxlength="1" class="w-8 text-center border-b-2 border-slate-400 outline-none focus:border-teal-500 uppercase font-bold"></div>
+                            <div class="flex justify-between items-center bg-slate-50 p-2 rounded border border-slate-200"><span class="text-sm">20. pond</span><input type="text" maxlength="1" class="w-8 text-center border-b-2 border-slate-400 outline-none focus:border-teal-500 uppercase font-bold"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PART 3 -->
+                <div class="mb-12">
+                    <div class="flex flex-col md:flex-row justify-between md:items-center mb-4 bg-slate-100 p-3 rounded">
+                        <h3 class="text-xl font-semibold text-slate-700">Part 3: Theatre Programmes</h3>
+                        <div class="mt-2 md:mt-0 w-full md:w-1/2">
+                            <!-- LOCAL AUDIO REFERENCE -->
+                            <audio controls controlsList="nodownload"><source src="part3.m4a" type="audio/mpeg"></audio>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <p class="font-semibold text-slate-700 mb-4">Questions 21-26: Choose the correct letter, A, B or C.</p>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 mb-4">
+                            <p class="font-medium mb-2">21. Finn was pleased to discover that their topic</p>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q21" value="A" class="mr-2 accent-teal-600"> A. was not familiar to their module leader.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q21" value="B" class="mr-2 accent-teal-600"> B. had not been chosen by other students.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q21" value="C" class="mr-2 accent-teal-600"> C. did not prove to be difficult to research.</label>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border-2 border-slate-200 rounded-lg p-6">
+                        <p class="font-semibold text-slate-700 mb-4">Questions 27-30: What comment is made about the programme for each of the following shows?<br>
+                        <span class="text-sm font-normal text-slate-500">Choose FOUR answers from the box and select the correct letter, A-F.</span></p>
+                        
+                        <div class="bg-amber-50 border border-amber-200 rounded p-4 mb-6">
+                            <h5 class="font-bold text-slate-800 mb-2 border-b border-amber-200 pb-1">Comments about programmes</h5>
+                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-slate-700">
+                                <li><strong>A.</strong> Its origin is somewhat controversial.</li>
+                                <li><strong>B.</strong> It is historically significant for a country.</li>
+                                <li><strong>C.</strong> It was effective at attracting audiences.</li>
+                                <li><strong>D.</strong> It is included in a recent project.</li>
+                                <li><strong>E.</strong> It contains insights into the show.</li>
+                                <li><strong>F.</strong> It resembles an artwork.</li>
+                            </ul>
+                        </div>
+
+                        <div class="space-y-3 max-w-md">
+                            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                                <span>27. Ruy Blas</span>
+                                <select class="p-1 border border-slate-300 rounded bg-slate-50 focus:border-teal-500 outline-none w-20 text-center"><option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option></select>
+                            </div>
+                            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                                <span>28. Man of La Mancha</span>
+                                <select class="p-1 border border-slate-300 rounded bg-slate-50 focus:border-teal-500 outline-none w-20 text-center"><option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option></select>
+                            </div>
+                            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                                <span>29. The Tragedy of Jane Shore</span>
+                                <select class="p-1 border border-slate-300 rounded bg-slate-50 focus:border-teal-500 outline-none w-20 text-center"><option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option></select>
+                            </div>
+                            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                                <span>30. The Sailors' Festival</span>
+                                <select class="p-1 border border-slate-300 rounded bg-slate-50 focus:border-teal-500 outline-none w-20 text-center"><option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PART 4 -->
+                <div class="mb-10">
+                    <div class="flex flex-col md:flex-row justify-between md:items-center mb-4 bg-slate-100 p-3 rounded">
+                        <h3 class="text-xl font-semibold text-slate-700">Part 4: Inclusive Design</h3>
+                        <div class="mt-2 md:mt-0 w-full md:w-1/2">
+                            <!-- LOCAL AUDIO REFERENCE -->
+                            <audio controls controlsList="nodownload"><source src="part4.m4a" type="audio/mpeg"></audio>
+                        </div>
+                    </div>
+
+                    <p class="text-slate-600 mb-4 font-semibold text-sm">Complete the notes below. Write ONE WORD ONLY for each answer.</p>
+                    
+                    <div class="bg-white border border-slate-300 rounded-lg p-6 md:p-8">
+                        <h4 class="text-center font-bold text-xl mb-6 text-slate-800">Inclusive design</h4>
+                        
+                        <div class="mb-6">
+                            <h5 class="font-bold text-slate-700 mb-2">Definition</h5>
+                            <ul class="bullet-list text-slate-700">
+                                <li>Designing products that can be accessed by a diverse range of people without the need for any <input type="text" class="q-input" data-q="31"></li>
+                                <li>Not the same as universal design: that is design for everyone, including catering for people with <input type="text" class="q-input" data-q="32"> problems.</li>
+                            </ul>
+                        </div>
+
+                        <div class="mb-6">
+                            <h5 class="font-bold text-slate-700 mb-2">Examples of inclusive design</h5>
+                            <ul class="bullet-list text-slate-700">
+                                <li><input type="text" class="q-input" data-q="33"> which are adjustable, avoiding back or neck problems</li>
+                                <li><input type="text" class="q-input" data-q="34"> in public toilets which are easier to use</li>
+                                <li>To assist the elderly:
+                                    <ul class="sub-bullet-list mt-2 ml-4">
+                                        <li>designers avoid using <input type="text" class="q-input" data-q="35"> in interfaces</li>
+                                        <li>people can make commands using a mouse, keyboard or their <input type="text" class="q-input" data-q="36"></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h5 class="font-bold text-slate-700 mb-2">Impact of non-inclusive designs</h5>
+                            <ul class="bullet-list text-slate-700">
+                                <li class="font-semibold">Access
+                                    <ul class="sub-bullet-list font-normal mt-1 ml-4">
+                                        <li>Loss of independence for disabled people.</li>
+                                    </ul>
+                                </li>
+                                <li class="font-semibold mt-2">Safety
+                                    <ul class="sub-bullet-list font-normal mt-1 ml-4">
+                                        <li>Seatbelts are especially problematic for <input type="text" class="q-input" data-q="37"> women.</li>
+                                        <li>PPE jackets are often unsuitable because of the size of women's <input type="text" class="q-input" data-q="38"></li>
+                                        <li>PPE for female <input type="text" class="q-input" data-q="39"> officers dealing with emergencies is the worst.</li>
+                                    </ul>
+                                </li>
+                                <li class="font-semibold mt-2">Comfort in the workplace
+                                    <ul class="sub-bullet-list font-normal mt-1 ml-4">
+                                        <li>The <input type="text" class="q-input" data-q="40"> in offices is often too low for women.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-right">
+                    <button class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-8 rounded-lg shadow-md transition-all">Submit Listening Section</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- READING SECTION -->
+        <section id="view-reading" class="hidden animate-fade-in">
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="p-6 md:p-8 border-b border-slate-200 bg-slate-50">
+                    <h2 class="text-3xl font-bold mb-2 text-slate-800">Section 2: Reading</h2>
+                    <p class="text-slate-500 mb-4">You have 60 minutes to complete all three passages. Toggle between the passages using the navigation below.</p>
+                    
+                    <div class="flex border-b border-slate-300">
+                        <button onclick="switchReadingTab('passage1')" id="btn-passage1" class="sub-nav-btn active px-6 py-3 text-slate-600 font-medium hover:text-teal-600 transition-colors">Passage 1</button>
+                        <button onclick="switchReadingTab('passage2')" id="btn-passage2" class="sub-nav-btn px-6 py-3 text-slate-600 font-medium hover:text-teal-600 transition-colors">Passage 2</button>
+                        <button onclick="switchReadingTab('passage3')" id="btn-passage3" class="sub-nav-btn px-6 py-3 text-slate-600 font-medium hover:text-teal-600 transition-colors">Passage 3</button>
+                    </div>
+                </div>
+
+                <div id="view-passage1" class="block">
+                    <div class="flex flex-col lg:flex-row h-auto lg:h-[800px]">
+                        <div class="lg:w-1/2 p-6 lg:p-10 overflow-y-auto border-b lg:border-b-0 lg:border-r border-slate-200 bg-amber-50/20">
+                            <h4 class="text-2xl font-bold mb-6 text-center text-slate-800">How tennis rackets have changed</h4>
+                            <div class="reading-text space-y-4">
+                                <p>In 2016, the British professional tennis player Andy Murray was ranked as the world's number one. It was an incredible achievement by any standard – made even more remarkable by the fact that he did this during a period considered to be one of the strongest in the sport's history, competing against the likes of Rafael Nadal, Roger Federer and Novak Djokovic, to name just a few.</p>
+                                <p>Of the changes that account for this transformation, one was visible and widely publicised: in 2011, Murray invited former number one player Ivan Lendl onto his coaching team – a valuable addition that had a visible impact on the player's playing style. Another change was so subtle as to pass more or less unnoticed. Like many players, Murray has long preferred a racket that consists of two types of string: one for the mains (verticals) and another for the crosses (horizontals).</p>
+                                <p class="text-slate-400 italic text-center pt-8">[Full text embedded here during production...]</p>
+                            </div>
+                        </div>
+                        <div class="lg:w-1/2 p-6 lg:p-10 overflow-y-auto bg-white">
+                            <div class="bg-slate-100 rounded px-3 py-1 inline-block mb-4 text-sm font-semibold text-slate-700">Questions 1-7</div>
+                            <p class="mb-4 text-sm text-slate-600">Do the following statements agree with the information given? Write TRUE, FALSE, or NOT GIVEN.</p>
+                            
+                            <div class="space-y-4 mb-10">
+                                <div class="flex items-start gap-3 border-b border-slate-100 pb-3">
+                                    <select class="p-1 border border-slate-300 rounded bg-slate-50 w-28 shrink-0"><option></option><option>TRUE</option><option>FALSE</option><option>NOT GIVEN</option></select>
+                                    <p class="text-slate-700 text-sm">1. People had expected Andy Murray to become the world's top tennis player for at least five years before 2016.</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-100 rounded px-3 py-1 inline-block mb-4 text-sm font-semibold text-slate-700">Questions 8-13</div>
+                            <p class="mb-4 text-sm text-slate-600">Complete the notes. Choose ONE WORD ONLY.</p>
+                            <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                                <h6 class="font-bold text-center mb-4">The tennis racket and how it has changed</h6>
+                                <ul class="bullet-list text-slate-700 text-sm">
+                                    <li>Mike and Bob Bryan made changes to the types of <input type="text" class="q-input bg-white"> used on their racket frames.</li>
+                                    <li>Players were not allowed to use the spaghetti-strung racket because of the amount of <input type="text" class="q-input bg-white"> it created.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="view-passage2" class="hidden">
+                    <div class="flex flex-col lg:flex-row h-auto lg:h-[800px]">
+                        <div class="lg:w-1/2 p-6 lg:p-10 overflow-y-auto border-b lg:border-b-0 lg:border-r border-slate-200 bg-amber-50/20">
+                            <h4 class="text-2xl font-bold mb-6 text-center text-slate-800">The pirates of the ancient Mediterranean</h4>
+                            <div class="reading-text space-y-4">
+                                <p><strong>A</strong> When one mentions pirates, an image springs to most people's minds of a crew of misfits, daredevils and adventurers in command of a tall sailing ship in the Caribbean Sea. Yet from the first to the third millennium BCE, thousands of years before these swashbucklers began spreading fear across the Caribbean, pirates prowled the Mediterranean, raiding merchant ships and threatening vital trade routes.</p>
+                            </div>
+                        </div>
+                        <div class="lg:w-1/2 p-6 lg:p-10 overflow-y-auto bg-white">
+                            <div class="bg-slate-100 rounded px-3 py-1 inline-block mb-4 text-sm font-semibold text-slate-700">Questions 14-19</div>
+                            <p class="mb-4 text-sm text-slate-600">Which paragraph contains the following information? Write the correct letter, A-G.</p>
+                            <div class="space-y-3 mb-8">
+                                <div class="flex items-center gap-3 border-b border-slate-100 pb-2">
+                                    <input type="text" maxlength="1" class="w-10 text-center border border-slate-300 rounded p-1 uppercase focus:border-teal-500 outline-none">
+                                    <span class="text-slate-700 text-sm">14. a reference to a denial of involvement in piracy</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="view-passage3" class="hidden">
+                    <div class="flex flex-col lg:flex-row h-auto lg:h-[800px]">
+                        <div class="lg:w-1/2 p-6 lg:p-10 overflow-y-auto border-b lg:border-b-0 lg:border-r border-slate-200 bg-amber-50/20">
+                            <h4 class="text-2xl font-bold mb-6 text-center text-slate-800">The persistence and peril of misinformation</h4>
+                            <div class="reading-text space-y-4">
+                                <p>Misinformation – both deliberately promoted and accidentally shared – is perhaps an inevitable part of the world in which we live, but it is not a new problem. People likely have lied to one another for roughly as long as verbal communication has existed. Deceiving others can offer an apparent opportunity to gain strategic advantage...</p>
+                            </div>
+                        </div>
+                        <div class="lg:w-1/2 p-6 lg:p-10 overflow-y-auto bg-white">
+                            <div class="bg-slate-100 rounded px-3 py-1 inline-block mb-4 text-sm font-semibold text-slate-700">Questions 31-36</div>
+                            <p class="mb-4 text-sm text-slate-600">Complete the summary using the list of phrases, A-J.</p>
+                            <div class="bg-slate-50 border border-slate-200 rounded p-4 mb-6 text-sm grid grid-cols-2 gap-2 text-slate-700">
+                                <div>A. constant conflict</div><div>B. additional evidence</div>
+                                <div>C. different locations</div><div>D. experimental subjects</div>
+                            </div>
+                            <div class="text-sm text-slate-700 leading-loose">
+                                Although people have <select class="p-1 border border-slate-300 rounded inline-block"><option></option><option>A</option><option>B</option><option>C</option></select> (31) to misinformation...
+                            </div>
+                            
+                            <div class="mt-8">
+                                <div class="bg-slate-100 rounded px-3 py-1 inline-block mb-4 text-sm font-semibold text-slate-700">Questions 37-40</div>
+                                <p class="mb-4 text-sm text-slate-600">Do the following statements agree with the claims of the writer? Write YES, NO, or NOT GIVEN.</p>
+                                <div class="space-y-4 mb-8">
+                                    <div class="flex flex-col sm:flex-row sm:items-start gap-3 border-b border-slate-100 pb-3">
+                                        <select class="p-1 border border-slate-300 rounded bg-slate-50 w-full sm:w-28 shrink-0"><option></option><option>YES</option><option>NO</option><option>NOT GIVEN</option></select>
+                                        <p class="text-slate-700 text-sm">37. Campaigns designed to correct misinformation will fail to achieve their purpose if people are unable to understand them.</p>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row sm:items-start gap-3 border-b border-slate-100 pb-3">
+                                        <select class="p-1 border border-slate-300 rounded bg-slate-50 w-full sm:w-28 shrink-0"><option></option><option>YES</option><option>NO</option><option>NOT GIVEN</option></select>
+                                        <p class="text-slate-700 text-sm">38. Attempts to teach elementary school students about misinformation have been opposed.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WRITING SECTION -->
+        <section id="view-writing" class="hidden animate-fade-in">
+            <div class="bg-white rounded-xl shadow-sm p-6 md:p-10 border border-slate-200">
+                <div class="flex items-center gap-4 mb-6 border-b pb-4">
+                    <span class="text-4xl text-teal-600">&#128221;</span>
+                    <div>
+                        <h2 class="text-3xl font-bold text-slate-800">Section 3: Writing</h2>
+                        <p class="text-slate-500">Responses are recorded securely via Google Workspace.</p>
+                    </div>
+                </div>
+
+                <!-- LOCAL IMAGE REFERENCE FOR TASK 1 IF NEEDED OUTSIDE THE FORM -->
+                <div class="mb-6 p-4 bg-slate-50 border border-slate-200 rounded text-center">
+                     <p class="text-sm text-slate-600 font-semibold mb-2">Reference Diagram for Task 1:</p>
+                     <img src="bamboo.png" alt="How bamboo fabric is made" class="mx-auto rounded border shadow-sm" style="max-height: 250px;">
+                </div>
+
+                <!-- GOOGLE FORM WRAPPER -->
+                <div class="w-full bg-slate-50 rounded-xl border-2 border-dashed border-slate-300 overflow-hidden relative" style="height: 800px;">
+                    <iframe src="https://docs.google.com/forms/d/e/14CV4wVaWTffG5VqDTAnYmGLE6cr1Jlwxt8E-kwFAQ9c/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading your secure writing assessment...</iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- SPEAKING SECTION -->
+        <section id="view-speaking" class="hidden animate-fade-in">
+            <div class="bg-white rounded-xl shadow-sm p-6 md:p-12 border border-slate-200 text-center max-w-3xl mx-auto mt-10">
+                <div class="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-slate-200">
+                    <span class="text-5xl text-slate-700">&#128483;</span>
+                </div>
+                <h2 class="text-4xl font-bold mb-4 text-slate-800">Section 4: Speaking Evaluation</h2>
+                <p class="text-slate-600 mb-8 text-lg leading-relaxed px-4">
+                    The Speaking module is a comprehensive, live evaluation of your linguistic fluency, lexical resource, and communicative coherence. To maintain the integrity of the testing schedule, formal booking is required.
+                </p>
+                
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-8 mb-8 text-center shadow-sm">
+                    <h3 class="font-semibold text-slate-800 text-xl mb-3">Scheduling Mandate</h3>
+                    <p class="text-slate-600 text-lg mb-4">Candidates must secure their evaluation slot no later than:</p>
+                    <!-- DYNAMIC DEADLINE INJECTED HERE -->
+                    <div id="dynamic-deadline" class="text-2xl font-bold text-teal-700 bg-white inline-block px-8 py-4 rounded-lg border border-teal-100 shadow-sm">Calculating...</div>
+                    <p class="text-slate-500 text-sm mt-5">Please ensure you are prepared for a rigorous academic interview. Unscheduled candidates cannot be assessed.</p>
+                </div>
+                
+                <a href="https://calendar.app.google/cTqqeta4ZxrKHcEh8" target="_blank" class="inline-flex bg-slate-900 hover:bg-slate-800 text-white font-medium py-4 px-10 rounded-lg shadow-md transition-all text-lg items-center justify-center gap-3 w-full sm:w-auto">
+                    <span>&#128197;</span> Proceed to Calendar Booking
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-6 text-center text-sm">
+        <p>IELTS MasterClass Platform &copy; 2026. Data visualization and interactive architecture.</p>
+    </footer>
+
+    <script>
+        const views = ['dashboard', 'listening', 'reading', 'writing', 'speaking'];
+        function switchTab(tabId) {
+            views.forEach(view => {
+                document.getElementById('view-' + view).classList.add('hidden');
+                document.getElementById('btn-' + view).classList.remove('active', 'bg-teal-600', 'text-white');
+            });
+            document.getElementById('view-' + tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).classList.add('active');
+            
+            if(tabId === 'speaking') setDynamicDeadline();
+        }
+
+        const readingTabs = ['passage1', 'passage2', 'passage3'];
+        function switchReadingTab(tabId) {
+            readingTabs.forEach(tab => {
+                document.getElementById('view-' + tab).classList.add('hidden');
+                document.getElementById('view-' + tab).classList.remove('block');
+                document.getElementById('btn-' + tab).classList.remove('active');
+            });
+            document.getElementById('view-' + tabId).classList.remove('hidden');
+            document.getElementById('view-' + tabId).classList.add('block');
+            document.getElementById('btn-' + tabId).classList.add('active');
+        }
+
+        function setDynamicDeadline() {
+            const today = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = today.toLocaleDateString('en-US', options);
+            document.getElementById('dynamic-deadline').innerHTML = `${formattedDate} <br><span class="text-xl mt-1 block font-normal text-slate-600">at 11:59 PM Local Time</span>`;
+        }
+    </script>
+</body>
+</html>
