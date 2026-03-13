@@ -37,7 +37,7 @@
             outline: none;
             padding: 2px 4px;
             transition: border-color 0.2s;
-            width: 120px;
+            width: 150px;
             font-family: 'Inter', sans-serif;
         }
         .q-input:focus {
@@ -69,7 +69,7 @@
             color: #64748b;
         }
     </style>
-    <!-- Application Structure Plan: GitHub Pages Deployment Version. All media links converted to relative local paths (.m4a) and full reading texts injected to remove placeholders. Google Form iframe awaits actual user injection. -->
+    <!-- Application Structure Plan: Full deployment with automated grading logic. HTML structurally modified to include unique IDs/Names for all 80 receptive questions. JavaScript dictionaries loaded with answer keys to simulate Cambridge examiner stringency. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 </head>
 <body class="flex flex-col min-h-screen">
@@ -126,7 +126,7 @@
 
         <!-- LISTENING SECTION -->
         <section id="view-listening" class="hidden animate-fade-in">
-            <div class="bg-white rounded-xl shadow-sm p-6 md:p-10 border border-slate-200">
+            <div class="bg-white rounded-xl shadow-sm p-6 md:p-10 border border-slate-200 relative">
                 <h2 class="text-3xl font-bold mb-2 text-slate-800">Section 1: Listening</h2>
                 <p class="text-slate-500 mb-6 border-b pb-4">
                     Assess your ability to understand spoken English. You will encounter conversations and monologues. 
@@ -137,7 +137,6 @@
                     <div class="flex flex-col md:flex-row justify-between md:items-center mb-4 bg-slate-100 p-3 rounded">
                         <h3 class="text-xl font-semibold text-slate-700">Part 1: Furniture Rental Companies</h3>
                         <div class="mt-2 md:mt-0 w-full md:w-1/2">
-                            <!-- LOCAL AUDIO REFERENCE - UPDATED TO .m4a AND audio/mp4 -->
                             <audio controls controlsList="nodownload"><source src="part1.m4a" type="audio/mp4"></audio>
                         </div>
                     </div>
@@ -154,23 +153,23 @@
                             <tbody class="divide-y divide-slate-200">
                                 <tr>
                                     <td class="p-3 font-medium">Peak Rentals</td>
-                                    <td class="p-3 border-l border-slate-200">Prices range from $105 to $ <input type="text" class="q-input" data-q="1"> per room per month.</td>
-                                    <td class="p-3 border-l border-slate-200">The furniture is very <input type="text" class="q-input" data-q="2">.<br>Delivers in 1-2 days.<br>Special offer: free <input type="text" class="q-input" data-q="3"> with every living room set.</td>
+                                    <td class="p-3 border-l border-slate-200">Prices range from $105 to $ <input type="text" id="L1" class="q-input"> per room per month.</td>
+                                    <td class="p-3 border-l border-slate-200">The furniture is very <input type="text" id="L2" class="q-input">.<br>Delivers in 1-2 days.<br>Special offer: free <input type="text" id="L3" class="q-input"> with every living room set.</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-3"><input type="text" class="q-input" data-q="4"> and Oliver</td>
-                                    <td class="p-3 border-l border-slate-200">Mid-range prices.<br>12% monthly free for 5<input type="text" class="q-input" data-q="5">.</td>
+                                    <td class="p-3"><input type="text" id="L4" class="q-input"> and Oliver</td>
+                                    <td class="p-3 border-l border-slate-200">Mid-range prices.<br>12% monthly free for 5 <input type="text" id="L5" class="q-input">.</td>
                                     <td class="p-3 border-l border-slate-200">Also offers a cleaning service.</td>
                                 </tr>
                                 <tr>
                                     <td class="p-3">Larch Furniture</td>
-                                    <td class="p-3 border-l border-slate-200">Offers cheapest prices for renting furniture and <input type="text" class="q-input" data-q="6"> items.</td>
-                                    <td class="p-3 border-l border-slate-200">Must have own <input type="text" class="q-input" data-q="7">.<br>Minimum contract length: six months.</td>
+                                    <td class="p-3 border-l border-slate-200">Offers cheapest prices for renting furniture and <input type="text" id="L6" class="q-input"> items.</td>
+                                    <td class="p-3 border-l border-slate-200">Must have own <input type="text" id="L7" class="q-input">.<br>Minimum contract length: six months.</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-3"><input type="text" class="q-input" data-q="8"> Rentals</td>
-                                    <td class="p-3 border-l border-slate-200">See the <input type="text" class="q-input" data-q="9"> for the most up-to-date prices.</td>
-                                    <td class="p-3 border-l border-slate-200"><input type="text" class="q-input" data-q="10"> are allowed within 7 days of delivery.</td>
+                                    <td class="p-3"><input type="text" id="L8" class="q-input"> Rentals</td>
+                                    <td class="p-3 border-l border-slate-200">See the <input type="text" id="L9" class="q-input"> for the most up-to-date prices.</td>
+                                    <td class="p-3 border-l border-slate-200"><input type="text" id="L10" class="q-input"> are allowed within 7 days of delivery.</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -182,7 +181,6 @@
                     <div class="flex flex-col md:flex-row justify-between md:items-center mb-4 bg-slate-100 p-3 rounded">
                         <h3 class="text-xl font-semibold text-slate-700">Part 2: Community Project</h3>
                         <div class="mt-2 md:mt-0 w-full md:w-1/2">
-                            <!-- LOCAL AUDIO REFERENCE - UPDATED TO .m4a AND audio/mp4 -->
                             <audio controls controlsList="nodownload"><source src="part2.m4a" type="audio/mp4"></audio>
                         </div>
                     </div>
@@ -190,27 +188,39 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                         <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
                             <p class="font-medium mb-2">11. Who was responsible for starting the community project?</p>
-                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q11" value="A" class="mr-2 accent-teal-600"> A. the castle owners</label>
-                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q11" value="B" class="mr-2 accent-teal-600"> B. a national charity</label>
-                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q11" value="C" class="mr-2 accent-teal-600"> C. the local council</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L11" value="A" class="mr-2 accent-teal-600"> A. the castle owners</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L11" value="B" class="mr-2 accent-teal-600"> B. a national charity</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L11" value="C" class="mr-2 accent-teal-600"> C. the local council</label>
                         </div>
                         <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
                             <p class="font-medium mb-2">12. How was the gold coin found?</p>
-                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q12" value="A" class="mr-2 accent-teal-600"> A. Heavy rain had removed some of the soil.</label>
-                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q12" value="B" class="mr-2 accent-teal-600"> B. The ground was dug up by wild rabbits.</label>
-                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q12" value="C" class="mr-2 accent-teal-600"> C. A person with a metal detector searched the area.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L12" value="A" class="mr-2 accent-teal-600"> A. Heavy rain had removed some of the soil.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L12" value="B" class="mr-2 accent-teal-600"> B. The ground was dug up by wild rabbits.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L12" value="C" class="mr-2 accent-teal-600"> C. A person with a metal detector searched the area.</label>
                         </div>
                         <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
                             <p class="font-medium mb-2">13. What led the archaeologists to believe there was an ancient village on this site?</p>
-                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q13" value="A" class="mr-2 accent-teal-600"> A. the lucky discovery of old records</label>
-                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q13" value="B" class="mr-2 accent-teal-600"> B. the bases of several structures visible in the grass</label>
-                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q13" value="C" class="mr-2 accent-teal-600"> C. the unusual stones found near the castle</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L13" value="A" class="mr-2 accent-teal-600"> A. the lucky discovery of old records</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L13" value="B" class="mr-2 accent-teal-600"> B. the bases of several structures visible in the grass</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L13" value="C" class="mr-2 accent-teal-600"> C. the unusual stones found near the castle</label>
                         </div>
                         <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
                             <p class="font-medium mb-2">14. What are the team still hoping to find?</p>
-                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q14" value="A" class="mr-2 accent-teal-600"> A. everyday pottery</label>
-                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q14" value="B" class="mr-2 accent-teal-600"> B. animal bones</label>
-                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q14" value="C" class="mr-2 accent-teal-600"> C. pieces of jewellery</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L14" value="A" class="mr-2 accent-teal-600"> A. everyday pottery</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L14" value="B" class="mr-2 accent-teal-600"> B. animal bones</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L14" value="C" class="mr-2 accent-teal-600"> C. pieces of jewellery</label>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <p class="font-medium mb-2">15. What was found on the other side of the river to the castle?</p>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L15" value="A" class="mr-2 accent-teal-600"> A. the remains of a large palace</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L15" value="B" class="mr-2 accent-teal-600"> B. the outline of fields</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L15" value="C" class="mr-2 accent-teal-600"> C. a number of small huts</label>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <p class="font-medium mb-2">16. What do the team plan to do after work ends this summer?</p>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L16" value="A" class="mr-2 accent-teal-600"> A. prepare a display for a museum</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L16" value="B" class="mr-2 accent-teal-600"> B. take part in a television programme</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L16" value="C" class="mr-2 accent-teal-600"> C. start to organise school visits</label>
                         </div>
                     </div>
 
@@ -219,10 +229,10 @@
                         <img src="map.png" alt="Map of Bidcaster Dig" class="max-w-full h-auto mx-auto rounded border border-slate-200 shadow-sm mb-6 object-contain" style="max-height: 400px;">
                         <p class="text-sm text-slate-600 mb-3 font-semibold text-center">Questions 17-20: Label the map below. Type the correct letter, A-G.</p>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
-                            <div class="flex justify-between items-center bg-slate-50 p-2 rounded border border-slate-200"><span class="text-sm">17. bridge</span><input type="text" maxlength="1" class="w-8 text-center border-b-2 border-slate-400 outline-none focus:border-teal-500 uppercase font-bold"></div>
-                            <div class="flex justify-between items-center bg-slate-50 p-2 rounded border border-slate-200"><span class="text-sm">18. rubbish</span><input type="text" maxlength="1" class="w-8 text-center border-b-2 border-slate-400 outline-none focus:border-teal-500 uppercase font-bold"></div>
-                            <div class="flex justify-between items-center bg-slate-50 p-2 rounded border border-slate-200"><span class="text-sm">19. hall</span><input type="text" maxlength="1" class="w-8 text-center border-b-2 border-slate-400 outline-none focus:border-teal-500 uppercase font-bold"></div>
-                            <div class="flex justify-between items-center bg-slate-50 p-2 rounded border border-slate-200"><span class="text-sm">20. pond</span><input type="text" maxlength="1" class="w-8 text-center border-b-2 border-slate-400 outline-none focus:border-teal-500 uppercase font-bold"></div>
+                            <div class="flex justify-between items-center bg-slate-50 p-2 rounded border border-slate-200"><span class="text-sm">17. bridge</span><input type="text" id="L17" maxlength="1" class="w-8 text-center border-b-2 border-slate-400 outline-none focus:border-teal-500 uppercase font-bold bg-transparent"></div>
+                            <div class="flex justify-between items-center bg-slate-50 p-2 rounded border border-slate-200"><span class="text-sm">18. rubbish</span><input type="text" id="L18" maxlength="1" class="w-8 text-center border-b-2 border-slate-400 outline-none focus:border-teal-500 uppercase font-bold bg-transparent"></div>
+                            <div class="flex justify-between items-center bg-slate-50 p-2 rounded border border-slate-200"><span class="text-sm">19. hall</span><input type="text" id="L19" maxlength="1" class="w-8 text-center border-b-2 border-slate-400 outline-none focus:border-teal-500 uppercase font-bold bg-transparent"></div>
+                            <div class="flex justify-between items-center bg-slate-50 p-2 rounded border border-slate-200"><span class="text-sm">20. pond</span><input type="text" id="L20" maxlength="1" class="w-8 text-center border-b-2 border-slate-400 outline-none focus:border-teal-500 uppercase font-bold bg-transparent"></div>
                         </div>
                     </div>
                 </div>
@@ -232,7 +242,6 @@
                     <div class="flex flex-col md:flex-row justify-between md:items-center mb-4 bg-slate-100 p-3 rounded">
                         <h3 class="text-xl font-semibold text-slate-700">Part 3: Theatre Programmes</h3>
                         <div class="mt-2 md:mt-0 w-full md:w-1/2">
-                            <!-- LOCAL AUDIO REFERENCE - UPDATED TO .m4a AND audio/mp4 -->
                             <audio controls controlsList="nodownload"><source src="part3.m4a" type="audio/mp4"></audio>
                         </div>
                     </div>
@@ -241,15 +250,39 @@
                         <div class="col-span-full"><p class="font-semibold text-slate-700 mb-2">Questions 21-26: Choose the correct letter, A, B or C.</p></div>
                         <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
                             <p class="font-medium mb-2">21. Finn was pleased to discover that their topic</p>
-                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q21" value="A" class="mr-2 accent-teal-600"> A. was not familiar to their module leader.</label>
-                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q21" value="B" class="mr-2 accent-teal-600"> B. had not been chosen by other students.</label>
-                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q21" value="C" class="mr-2 accent-teal-600"> C. did not prove to be difficult to research.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L21" value="A" class="mr-2 accent-teal-600"> A. was not familiar to their module leader.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L21" value="B" class="mr-2 accent-teal-600"> B. had not been chosen by other students.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L21" value="C" class="mr-2 accent-teal-600"> C. did not prove to be difficult to research.</label>
                         </div>
                         <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
                             <p class="font-medium mb-2">22. Maya says a mistaken belief about theatre programmes is that</p>
-                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q22" value="A" class="mr-2 accent-teal-600"> A. theatres pay companies to produce them.</label>
-                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q22" value="B" class="mr-2 accent-teal-600"> B. few theatre-goers buy them nowadays.</label>
-                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="q22" value="C" class="mr-2 accent-teal-600"> C. they contain far more adverts than previously.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L22" value="A" class="mr-2 accent-teal-600"> A. theatres pay companies to produce them.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L22" value="B" class="mr-2 accent-teal-600"> B. few theatre-goers buy them nowadays.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L22" value="C" class="mr-2 accent-teal-600"> C. they contain far more adverts than previously.</label>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <p class="font-medium mb-2">23. Finn was surprised that, in early British theatre, programmes</p>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L23" value="A" class="mr-2 accent-teal-600"> A. were difficult for audiences to obtain.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L23" value="B" class="mr-2 accent-teal-600"> B. were given out free of charge.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L23" value="C" class="mr-2 accent-teal-600"> C. were seen as a kind of contract.</label>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <p class="font-medium mb-2">24. Maya feels their project should include an explanation of why companies of actors</p>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L24" value="A" class="mr-2 accent-teal-600"> A. promoted their own plays.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L24" value="B" class="mr-2 accent-teal-600"> B. performed plays outdoors.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L24" value="C" class="mr-2 accent-teal-600"> C. had to tour with their plays.</label>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <p class="font-medium mb-2">25. Finn and Maya both think that, compared to nineteenth-century programmes, those from the eighteenth century</p>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L25" value="A" class="mr-2 accent-teal-600"> A. were more original.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L25" value="B" class="mr-2 accent-teal-600"> B. were more colourful.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L25" value="C" class="mr-2 accent-teal-600"> C. were more informative.</label>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <p class="font-medium mb-2">26. Maya doesn't fully understand why, in the twentieth century,</p>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L26" value="A" class="mr-2 accent-teal-600"> A. very few theatre programmes were printed in the USA.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L26" value="B" class="mr-2 accent-teal-600"> B. British theatre programmes failed to develop for so long.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L26" value="C" class="mr-2 accent-teal-600"> C. theatre programmes in Britain copied fashions from the USA.</label>
                         </div>
                     </div>
 
@@ -272,19 +305,19 @@
                         <div class="space-y-3 max-w-md">
                             <div class="flex items-center justify-between border-b border-slate-100 pb-2">
                                 <span>27. Ruy Blas</span>
-                                <select class="p-1 border border-slate-300 rounded bg-slate-50 focus:border-teal-500 outline-none w-20 text-center"><option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option></select>
+                                <select id="L27" class="p-1 border border-slate-300 rounded bg-slate-50 focus:border-teal-500 outline-none w-20 text-center"><option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option></select>
                             </div>
                             <div class="flex items-center justify-between border-b border-slate-100 pb-2">
                                 <span>28. Man of La Mancha</span>
-                                <select class="p-1 border border-slate-300 rounded bg-slate-50 focus:border-teal-500 outline-none w-20 text-center"><option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option></select>
+                                <select id="L28" class="p-1 border border-slate-300 rounded bg-slate-50 focus:border-teal-500 outline-none w-20 text-center"><option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option></select>
                             </div>
                             <div class="flex items-center justify-between border-b border-slate-100 pb-2">
                                 <span>29. The Tragedy of Jane Shore</span>
-                                <select class="p-1 border border-slate-300 rounded bg-slate-50 focus:border-teal-500 outline-none w-20 text-center"><option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option></select>
+                                <select id="L29" class="p-1 border border-slate-300 rounded bg-slate-50 focus:border-teal-500 outline-none w-20 text-center"><option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option></select>
                             </div>
                             <div class="flex items-center justify-between border-b border-slate-100 pb-2">
                                 <span>30. The Sailors' Festival</span>
-                                <select class="p-1 border border-slate-300 rounded bg-slate-50 focus:border-teal-500 outline-none w-20 text-center"><option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option></select>
+                                <select id="L30" class="p-1 border border-slate-300 rounded bg-slate-50 focus:border-teal-500 outline-none w-20 text-center"><option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option></select>
                             </div>
                         </div>
                     </div>
@@ -295,7 +328,6 @@
                     <div class="flex flex-col md:flex-row justify-between md:items-center mb-4 bg-slate-100 p-3 rounded">
                         <h3 class="text-xl font-semibold text-slate-700">Part 4: Inclusive Design</h3>
                         <div class="mt-2 md:mt-0 w-full md:w-1/2">
-                            <!-- LOCAL AUDIO REFERENCE - UPDATED TO .m4a AND audio/mp4 -->
                             <audio controls controlsList="nodownload"><source src="part4.m4a" type="audio/mp4"></audio>
                         </div>
                     </div>
@@ -308,20 +340,20 @@
                         <div class="mb-6">
                             <h5 class="font-bold text-slate-700 mb-2">Definition</h5>
                             <ul class="bullet-list text-slate-700">
-                                <li>Designing products that can be accessed by a diverse range of people without the need for any <input type="text" class="q-input" data-q="31"></li>
-                                <li>Not the same as universal design: that is design for everyone, including catering for people with <input type="text" class="q-input" data-q="32"> problems.</li>
+                                <li>Designing products that can be accessed by a diverse range of people without the need for any <input type="text" id="L31" class="q-input"></li>
+                                <li>Not the same as universal design: that is design for everyone, including catering for people with <input type="text" id="L32" class="q-input"> problems.</li>
                             </ul>
                         </div>
 
                         <div class="mb-6">
                             <h5 class="font-bold text-slate-700 mb-2">Examples of inclusive design</h5>
                             <ul class="bullet-list text-slate-700">
-                                <li><input type="text" class="q-input" data-q="33"> which are adjustable, avoiding back or neck problems</li>
-                                <li><input type="text" class="q-input" data-q="34"> in public toilets which are easier to use</li>
+                                <li><input type="text" id="L33" class="q-input"> which are adjustable, avoiding back or neck problems</li>
+                                <li><input type="text" id="L34" class="q-input"> in public toilets which are easier to use</li>
                                 <li>To assist the elderly:
                                     <ul class="sub-bullet-list mt-2 ml-4">
-                                        <li>designers avoid using <input type="text" class="q-input" data-q="35"> in interfaces</li>
-                                        <li>people can make commands using a mouse, keyboard or their <input type="text" class="q-input" data-q="36"></li>
+                                        <li>designers avoid using <input type="text" id="L35" class="q-input"> in interfaces</li>
+                                        <li>people can make commands using a mouse, keyboard or their <input type="text" id="L36" class="q-input"></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -337,14 +369,14 @@
                                 </li>
                                 <li class="font-semibold mt-2">Safety
                                     <ul class="sub-bullet-list font-normal mt-1 ml-4">
-                                        <li>Seatbelts are especially problematic for <input type="text" class="q-input" data-q="37"> women.</li>
-                                        <li>PPE jackets are often unsuitable because of the size of women's <input type="text" class="q-input" data-q="38"></li>
-                                        <li>PPE for female <input type="text" class="q-input" data-q="39"> officers dealing with emergencies is the worst.</li>
+                                        <li>Seatbelts are especially problematic for <input type="text" id="L37" class="q-input"> women.</li>
+                                        <li>PPE jackets are often unsuitable because of the size of women's <input type="text" id="L38" class="q-input"></li>
+                                        <li>PPE for female <input type="text" id="L39" class="q-input"> officers dealing with emergencies is the worst.</li>
                                     </ul>
                                 </li>
                                 <li class="font-semibold mt-2">Comfort in the workplace
                                     <ul class="sub-bullet-list font-normal mt-1 ml-4">
-                                        <li>The <input type="text" class="q-input" data-q="40"> in offices is often too low for women.</li>
+                                        <li>The <input type="text" id="L40" class="q-input"> in offices is often too low for women.</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -352,8 +384,13 @@
                     </div>
                 </div>
 
-                <div class="text-right">
-                    <button class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-8 rounded-lg shadow-md transition-all">Submit Listening Section</button>
+                <div class="flex flex-col md:flex-row justify-between items-center border-t border-slate-200 pt-6">
+                    <div id="listening-score-box" class="hidden bg-teal-50 border-2 border-teal-500 rounded-lg p-4 mb-4 md:mb-0 w-full md:w-1/2 shadow-sm">
+                        <p class="font-bold text-teal-800">Automated Cambridge Evaluation:</p>
+                        <p id="listening-score-display" class="text-2xl font-bold text-teal-600 mt-1"></p>
+                        <p class="text-xs text-teal-700 mt-2 italic">Note: The algorithm is ruthless. Spelling must be exact.</p>
+                    </div>
+                    <button id="btn-grade-listen" onclick="gradeListening()" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-8 rounded-lg shadow-md transition-all ml-auto">Submit & Grade Listening</button>
                 </div>
             </div>
         </section>
@@ -372,7 +409,7 @@
                     </div>
                 </div>
 
-                <!-- PASSAGE 1: FULL TEXT INJECTED -->
+                <!-- PASSAGE 1 -->
                 <div id="view-passage1" class="block">
                     <div class="flex flex-col lg:flex-row h-auto lg:h-[800px]">
                         <div class="lg:w-1/2 p-6 lg:p-10 overflow-y-auto border-b lg:border-b-0 lg:border-r border-slate-200 bg-amber-50/20">
@@ -397,20 +434,32 @@
                             
                             <div class="space-y-4 mb-10">
                                 <div class="flex items-start gap-3 border-b border-slate-100 pb-3">
-                                    <select class="p-1 border border-slate-300 rounded bg-slate-50 w-28 shrink-0"><option></option><option>TRUE</option><option>FALSE</option><option>NOT GIVEN</option></select>
+                                    <select id="R1" class="p-1 border border-slate-300 rounded bg-slate-50 w-28 shrink-0"><option></option><option>TRUE</option><option>FALSE</option><option>NOT GIVEN</option></select>
                                     <p class="text-slate-700 text-sm">1. People had expected Andy Murray to become the world's top tennis player for at least five years before 2016.</p>
                                 </div>
                                 <div class="flex items-start gap-3 border-b border-slate-100 pb-3">
-                                    <select class="p-1 border border-slate-300 rounded bg-slate-50 w-28 shrink-0"><option></option><option>TRUE</option><option>FALSE</option><option>NOT GIVEN</option></select>
+                                    <select id="R2" class="p-1 border border-slate-300 rounded bg-slate-50 w-28 shrink-0"><option></option><option>TRUE</option><option>FALSE</option><option>NOT GIVEN</option></select>
                                     <p class="text-slate-700 text-sm">2. The change that Andy Murray made to his rackets attracted a lot of attention.</p>
                                 </div>
                                 <div class="flex items-start gap-3 border-b border-slate-100 pb-3">
-                                    <select class="p-1 border border-slate-300 rounded bg-slate-50 w-28 shrink-0"><option></option><option>TRUE</option><option>FALSE</option><option>NOT GIVEN</option></select>
+                                    <select id="R3" class="p-1 border border-slate-300 rounded bg-slate-50 w-28 shrink-0"><option></option><option>TRUE</option><option>FALSE</option><option>NOT GIVEN</option></select>
                                     <p class="text-slate-700 text-sm">3. Most of the world's top players take a professional racket stringer on tour with them.</p>
                                 </div>
                                 <div class="flex items-start gap-3 border-b border-slate-100 pb-3">
-                                    <select class="p-1 border border-slate-300 rounded bg-slate-50 w-28 shrink-0"><option></option><option>TRUE</option><option>FALSE</option><option>NOT GIVEN</option></select>
+                                    <select id="R4" class="p-1 border border-slate-300 rounded bg-slate-50 w-28 shrink-0"><option></option><option>TRUE</option><option>FALSE</option><option>NOT GIVEN</option></select>
                                     <p class="text-slate-700 text-sm">4. Mike and Bob Bryan use rackets that are light in comparison to the majority of rackets.</p>
+                                </div>
+                                <div class="flex items-start gap-3 border-b border-slate-100 pb-3">
+                                    <select id="R5" class="p-1 border border-slate-300 rounded bg-slate-50 w-28 shrink-0"><option></option><option>TRUE</option><option>FALSE</option><option>NOT GIVEN</option></select>
+                                    <p class="text-slate-700 text-sm">5. Werner Fischer played with a spaghetti-strung racket that he designed himself.</p>
+                                </div>
+                                <div class="flex items-start gap-3 border-b border-slate-100 pb-3">
+                                    <select id="R6" class="p-1 border border-slate-300 rounded bg-slate-50 w-28 shrink-0"><option></option><option>TRUE</option><option>FALSE</option><option>NOT GIVEN</option></select>
+                                    <p class="text-slate-700 text-sm">6. The weather can affect how professional players adjust the strings on their rackets.</p>
+                                </div>
+                                <div class="flex items-start gap-3 border-b border-slate-100 pb-3">
+                                    <select id="R7" class="p-1 border border-slate-300 rounded bg-slate-50 w-28 shrink-0"><option></option><option>TRUE</option><option>FALSE</option><option>NOT GIVEN</option></select>
+                                    <p class="text-slate-700 text-sm">7. It was believed that the change Pete Sampras made to his rackets contributed to his strong serve.</p>
                                 </div>
                             </div>
 
@@ -419,19 +468,19 @@
                             <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
                                 <h6 class="font-bold text-center mb-4 text-slate-800">The tennis racket and how it has changed</h6>
                                 <ul class="bullet-list text-slate-700 text-sm space-y-3">
-                                    <li>Mike and Bob Bryan made changes to the types of <input type="text" class="q-input bg-white"> used on their racket frames.</li>
-                                    <li>Players were not allowed to use the spaghetti-strung racket because of the amount of <input type="text" class="q-input bg-white"> it created.</li>
-                                    <li>Changes to rackets can be regarded as being as important as players' diets or the <input type="text" class="q-input bg-white"> they do.</li>
-                                    <li>All rackets used to have natural strings made from the <input type="text" class="q-input bg-white"> of animals.</li>
-                                    <li>Pete Sampras had metal <input type="text" class="q-input bg-white"> put into the frames of his rackets.</li>
-                                    <li>Gonçalo Oliveira changed the <input type="text" class="q-input bg-white"> on his racket handles.</li>
+                                    <li>Mike and Bob Bryan made changes to the types of <input type="text" id="R8" class="q-input bg-white"> used on their racket frames.</li>
+                                    <li>Players were not allowed to use the spaghetti-strung racket because of the amount of <input type="text" id="R9" class="q-input bg-white"> it created.</li>
+                                    <li>Changes to rackets can be regarded as being as important as players' diets or the <input type="text" id="R10" class="q-input bg-white"> they do.</li>
+                                    <li>All rackets used to have natural strings made from the <input type="text" id="R11" class="q-input bg-white"> of animals.</li>
+                                    <li>Pete Sampras had metal <input type="text" id="R12" class="q-input bg-white"> put into the frames of his rackets.</li>
+                                    <li>Gonçalo Oliveira changed the <input type="text" id="R13" class="q-input bg-white"> on his racket handles.</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- PASSAGE 2: FULL TEXT INJECTED -->
+                <!-- PASSAGE 2 -->
                 <div id="view-passage2" class="hidden">
                     <div class="flex flex-col lg:flex-row h-auto lg:h-[800px]">
                         <div class="lg:w-1/2 p-6 lg:p-10 overflow-y-auto border-b lg:border-b-0 lg:border-r border-slate-200 bg-amber-50/20">
@@ -451,35 +500,64 @@
                             <p class="mb-4 text-sm text-slate-600">Which paragraph contains the following information? Write the correct letter, A-G.</p>
                             <div class="space-y-3 mb-8">
                                 <div class="flex items-center gap-3 border-b border-slate-100 pb-2">
-                                    <input type="text" maxlength="1" class="w-10 text-center border border-slate-300 rounded p-1 uppercase focus:border-teal-500 outline-none">
+                                    <input type="text" id="R14" maxlength="1" class="w-10 text-center border border-slate-300 rounded p-1 uppercase focus:border-teal-500 outline-none">
                                     <span class="text-slate-700 text-sm">14. a reference to a denial of involvement in piracy</span>
                                 </div>
                                 <div class="flex items-center gap-3 border-b border-slate-100 pb-2">
-                                    <input type="text" maxlength="1" class="w-10 text-center border border-slate-300 rounded p-1 uppercase focus:border-teal-500 outline-none">
+                                    <input type="text" id="R15" maxlength="1" class="w-10 text-center border border-slate-300 rounded p-1 uppercase focus:border-teal-500 outline-none">
                                     <span class="text-slate-700 text-sm">15. details of how a campaign to eradicate piracy was carried out</span>
                                 </div>
                                 <div class="flex items-center gap-3 border-b border-slate-100 pb-2">
-                                    <input type="text" maxlength="1" class="w-10 text-center border border-slate-300 rounded p-1 uppercase focus:border-teal-500 outline-none">
+                                    <input type="text" id="R16" maxlength="1" class="w-10 text-center border border-slate-300 rounded p-1 uppercase focus:border-teal-500 outline-none">
                                     <span class="text-slate-700 text-sm">16. a mention of the circumstances in which states in the ancient world would make use of pirates</span>
                                 </div>
                                 <div class="flex items-center gap-3 border-b border-slate-100 pb-2">
-                                    <input type="text" maxlength="1" class="w-10 text-center border border-slate-300 rounded p-1 uppercase focus:border-teal-500 outline-none">
+                                    <input type="text" id="R17" maxlength="1" class="w-10 text-center border border-slate-300 rounded p-1 uppercase focus:border-teal-500 outline-none">
                                     <span class="text-slate-700 text-sm">17. a reference to how people today commonly view pirates</span>
                                 </div>
                                 <div class="flex items-center gap-3 border-b border-slate-100 pb-2">
-                                    <input type="text" maxlength="1" class="w-10 text-center border border-slate-300 rounded p-1 uppercase focus:border-teal-500 outline-none">
+                                    <input type="text" id="R18" maxlength="1" class="w-10 text-center border border-slate-300 rounded p-1 uppercase focus:border-teal-500 outline-none">
                                     <span class="text-slate-700 text-sm">18. an explanation of how some people were encouraged not to return to piracy</span>
                                 </div>
                                 <div class="flex items-center gap-3 border-b border-slate-100 pb-2">
-                                    <input type="text" maxlength="1" class="w-10 text-center border border-slate-300 rounded p-1 uppercase focus:border-teal-500 outline-none">
+                                    <input type="text" id="R19" maxlength="1" class="w-10 text-center border border-slate-300 rounded p-1 uppercase focus:border-teal-500 outline-none">
                                     <span class="text-slate-700 text-sm">19. a mention of the need for many sailing vessels to stay relatively close to land</span>
                                 </div>
+                            </div>
+
+                            <div class="bg-slate-100 rounded px-3 py-1 inline-block mb-4 text-sm font-semibold text-slate-700">Questions 20 and 21</div>
+                            <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 mb-6">
+                                <p class="font-medium mb-3 text-sm">Which <strong>TWO</strong> of the following statements does the writer make about inhabitants of the Mediterranean region in the ancient world?</p>
+                                <label class="block cursor-pointer hover:bg-slate-100 p-2 rounded text-sm"><input type="checkbox" name="R20_21" value="A" class="mr-2 accent-teal-600"> A. They often used stolen vessels to carry out pirate attacks.</label>
+                                <label class="block cursor-pointer hover:bg-slate-100 p-2 rounded text-sm"><input type="checkbox" name="R20_21" value="B" class="mr-2 accent-teal-600"> B. They managed to escape capture by the authorities because they knew the area so well.</label>
+                                <label class="block cursor-pointer hover:bg-slate-100 p-2 rounded text-sm"><input type="checkbox" name="R20_21" value="C" class="mr-2 accent-teal-600"> C. They paid for information about the routes merchant ships would take.</label>
+                                <label class="block cursor-pointer hover:bg-slate-100 p-2 rounded text-sm"><input type="checkbox" name="R20_21" value="D" class="mr-2 accent-teal-600"> D. They depended more on the sea for their livelihood than on farming.</label>
+                                <label class="block cursor-pointer hover:bg-slate-100 p-2 rounded text-sm"><input type="checkbox" name="R20_21" value="E" class="mr-2 accent-teal-600"> E. They stored many of the goods taken in pirate attacks in coves along the coastline.</label>
+                            </div>
+
+                            <div class="bg-slate-100 rounded px-3 py-1 inline-block mb-4 text-sm font-semibold text-slate-700">Questions 22 and 23</div>
+                            <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 mb-8">
+                                <p class="font-medium mb-3 text-sm">Which <strong>TWO</strong> of the following statements does the writer make about piracy and ancient Greece?</p>
+                                <label class="block cursor-pointer hover:bg-slate-100 p-2 rounded text-sm"><input type="checkbox" name="R22_23" value="A" class="mr-2 accent-teal-600"> A. The state estimated that very few people were involved in piracy.</label>
+                                <label class="block cursor-pointer hover:bg-slate-100 p-2 rounded text-sm"><input type="checkbox" name="R22_23" value="B" class="mr-2 accent-teal-600"> B. Attitudes towards piracy changed shortly after the Iliad and the Odyssey were written.</label>
+                                <label class="block cursor-pointer hover:bg-slate-100 p-2 rounded text-sm"><input type="checkbox" name="R22_23" value="C" class="mr-2 accent-teal-600"> C. Important officials were known to occasionally take part in piracy.</label>
+                                <label class="block cursor-pointer hover:bg-slate-100 p-2 rounded text-sm"><input type="checkbox" name="R22_23" value="D" class="mr-2 accent-teal-600"> D. Every citizen regarded pirate attacks on cities as unacceptable.</label>
+                                <label class="block cursor-pointer hover:bg-slate-100 p-2 rounded text-sm"><input type="checkbox" name="R22_23" value="E" class="mr-2 accent-teal-600"> E. A favourable view of piracy is evident in certain ancient Greek texts.</label>
+                            </div>
+
+                            <div class="bg-slate-100 rounded px-3 py-1 inline-block mb-4 text-sm font-semibold text-slate-700">Questions 24-26</div>
+                            <p class="mb-4 text-sm text-slate-600">Complete the summary below. Choose ONE WORD ONLY.</p>
+                            <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                                <h6 class="font-bold text-center mb-4 text-slate-800">Ancient Rome and piracy</h6>
+                                <p class="text-sm text-slate-700 leading-loose">
+                                    Piracy was an issue ancient Rome had to deal with, but it also brought some benefits for Rome. For example, pirates supplied slaves that were important for Rome's industries. However, attacks on vessels transporting <input type="text" id="R24" class="q-input bg-white w-24"> to Rome resulted in calls for <input type="text" id="R25" class="q-input bg-white w-24"> for the pirates responsible. Nevertheless, piracy continued, with some pirates demanding a <input type="text" id="R26" class="q-input bg-white w-24"> for the return of the Roman officials they captured.
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- PASSAGE 3: FULL TEXT INJECTED -->
+                <!-- PASSAGE 3 -->
                 <div id="view-passage3" class="hidden">
                     <div class="flex flex-col lg:flex-row h-auto lg:h-[800px]">
                         <div class="lg:w-1/2 p-6 lg:p-10 overflow-y-auto border-b lg:border-b-0 lg:border-r border-slate-200 bg-amber-50/20">
@@ -496,6 +574,39 @@
                             </div>
                         </div>
                         <div class="lg:w-1/2 p-6 lg:p-10 overflow-y-auto bg-white">
+                            
+                            <div class="bg-slate-100 rounded px-3 py-1 inline-block mb-4 text-sm font-semibold text-slate-700">Questions 27-30</div>
+                            <div class="space-y-6 mb-8 text-sm">
+                                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                                    <p class="font-medium mb-2">27. What point does the writer make about misinformation in the first paragraph?</p>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R27" value="A" class="mr-2 accent-teal-600"> A. Misinformation is a relatively recent phenomenon.</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R27" value="B" class="mr-2 accent-teal-600"> B. Some people find it easy to identify misinformation.</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R27" value="C" class="mr-2 accent-teal-600"> C. Misinformation changes as it is passed from one person to another.</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R27" value="D" class="mr-2 accent-teal-600"> D. There may be a number of reasons for the spread of misinformation.</label>
+                                </div>
+                                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                                    <p class="font-medium mb-2">28. What does the writer say about the role of technology?</p>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R28" value="A" class="mr-2 accent-teal-600"> A. It may at some point provide us with a solution to misinformation.</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R28" value="B" class="mr-2 accent-teal-600"> B. It could fundamentally alter the way in which people regard information.</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R28" value="C" class="mr-2 accent-teal-600"> C. It has changed the way in which organisations use misinformation.</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R28" value="D" class="mr-2 accent-teal-600"> D. It has made it easier for people to check whether information is accurate.</label>
+                                </div>
+                                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                                    <p class="font-medium mb-2">29. What is the writer doing in the fourth paragraph?</p>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R29" value="A" class="mr-2 accent-teal-600"> A. comparing the different opinions people have of misinformation</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R29" value="B" class="mr-2 accent-teal-600"> B. explaining how the effects of misinformation have changed over time</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R29" value="C" class="mr-2 accent-teal-600"> C. outlining which issues connected with misinformation are significant today</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R29" value="D" class="mr-2 accent-teal-600"> D. describing the attitude of policy makers towards misinformation in the media</label>
+                                </div>
+                                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                                    <p class="font-medium mb-2">30. What point does the writer make about regulation in the USA?</p>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R30" value="A" class="mr-2 accent-teal-600"> A. The guidelines issued by the FDA need to be simplified.</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R30" value="B" class="mr-2 accent-teal-600"> B. Regulation does not affect people's opinions of new prescription drugs.</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R30" value="C" class="mr-2 accent-teal-600"> C. The USA has more regulatory bodies than most other countries.</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R30" value="D" class="mr-2 accent-teal-600"> D. Regulation fails to prevent misinformation from appearing in the media.</label>
+                                </div>
+                            </div>
+
                             <div class="bg-slate-100 rounded px-3 py-1 inline-block mb-4 text-sm font-semibold text-slate-700">Questions 31-36</div>
                             <p class="mb-4 text-sm text-slate-600">Complete the summary using the list of phrases, A-J.</p>
                             <div class="bg-slate-50 border border-slate-200 rounded p-4 mb-6 text-sm grid grid-cols-2 gap-2 text-slate-700 font-semibold">
@@ -506,7 +617,7 @@
                                 <div>I. dubious reason</div><div>J. different ideas</div>
                             </div>
                             <div class="text-sm text-slate-700 leading-loose">
-                                Although people have <select class="p-1 border border-slate-300 rounded inline-block"><option></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select> (31) to misinformation, there is debate about precisely how and when we label something as true or untrue. The philosophers Descartes and Spinoza had <select class="p-1 border border-slate-300 rounded inline-block"><option></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select> (32) about how people engage with information. While Descartes believed that people accept or reject information after considering whether it is true or not, Spinoza argued that people accepted all information they encountered (and by default misinformation) and did not verify or reject it until afterwards. Moreover, Spinoza believed that a distinct <select class="p-1 border border-slate-300 rounded inline-block"><option></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select> (33) is involved in these stages. Recent research has provided <select class="p-1 border border-slate-300 rounded inline-block"><option></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select> (34) for Spinoza's theory and it would appear that people accept all encountered information as if it were true, even if this is for an extremely <select class="p-1 border border-slate-300 rounded inline-block"><option></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select> (35), and do not label the information as true or false until later. This is consistent with the fact that the resources for scepticism and the resources for perceiving and encoding are in <select class="p-1 border border-slate-300 rounded inline-block"><option></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select> (36) in the brain.
+                                Although people have <select id="R31" class="p-1 border border-slate-300 rounded inline-block"><option></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select> (31) to misinformation, there is debate about precisely how and when we label something as true or untrue. The philosophers Descartes and Spinoza had <select id="R32" class="p-1 border border-slate-300 rounded inline-block"><option></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select> (32) about how people engage with information. While Descartes believed that people accept or reject information after considering whether it is true or not, Spinoza argued that people accepted all information they encountered (and by default misinformation) and did not verify or reject it until afterwards. Moreover, Spinoza believed that a distinct <select id="R33" class="p-1 border border-slate-300 rounded inline-block"><option></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select> (33) is involved in these stages. Recent research has provided <select id="R34" class="p-1 border border-slate-300 rounded inline-block"><option></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select> (34) for Spinoza's theory and it would appear that people accept all encountered information as if it were true, even if this is for an extremely <select id="R35" class="p-1 border border-slate-300 rounded inline-block"><option></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select> (35), and do not label the information as true or false until later. This is consistent with the fact that the resources for scepticism and the resources for perceiving and encoding are in <select id="R36" class="p-1 border border-slate-300 rounded inline-block"><option></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select> (36) in the brain.
                             </div>
                             
                             <div class="mt-8">
@@ -514,25 +625,33 @@
                                 <p class="mb-4 text-sm text-slate-600">Do the following statements agree with the claims of the writer? Write YES, NO, or NOT GIVEN.</p>
                                 <div class="space-y-4 mb-8">
                                     <div class="flex flex-col sm:flex-row sm:items-start gap-3 border-b border-slate-100 pb-3">
-                                        <select class="p-1 border border-slate-300 rounded bg-slate-50 w-full sm:w-28 shrink-0"><option></option><option>YES</option><option>NO</option><option>NOT GIVEN</option></select>
+                                        <select id="R37" class="p-1 border border-slate-300 rounded bg-slate-50 w-full sm:w-28 shrink-0"><option></option><option>YES</option><option>NO</option><option>NOT GIVEN</option></select>
                                         <p class="text-slate-700 text-sm">37. Campaigns designed to correct misinformation will fail to achieve their purpose if people are unable to understand them.</p>
                                     </div>
                                     <div class="flex flex-col sm:flex-row sm:items-start gap-3 border-b border-slate-100 pb-3">
-                                        <select class="p-1 border border-slate-300 rounded bg-slate-50 w-full sm:w-28 shrink-0"><option></option><option>YES</option><option>NO</option><option>NOT GIVEN</option></select>
+                                        <select id="R38" class="p-1 border border-slate-300 rounded bg-slate-50 w-full sm:w-28 shrink-0"><option></option><option>YES</option><option>NO</option><option>NOT GIVEN</option></select>
                                         <p class="text-slate-700 text-sm">38. Attempts to teach elementary school students about misinformation have been opposed.</p>
                                     </div>
                                     <div class="flex flex-col sm:flex-row sm:items-start gap-3 border-b border-slate-100 pb-3">
-                                        <select class="p-1 border border-slate-300 rounded bg-slate-50 w-full sm:w-28 shrink-0"><option></option><option>YES</option><option>NO</option><option>NOT GIVEN</option></select>
+                                        <select id="R39" class="p-1 border border-slate-300 rounded bg-slate-50 w-full sm:w-28 shrink-0"><option></option><option>YES</option><option>NO</option><option>NOT GIVEN</option></select>
                                         <p class="text-slate-700 text-sm">39. It may be possible to overcome the problem of misinformation in a relatively short period.</p>
                                     </div>
                                     <div class="flex flex-col sm:flex-row sm:items-start gap-3 border-b border-slate-100 pb-3">
-                                        <select class="p-1 border border-slate-300 rounded bg-slate-50 w-full sm:w-28 shrink-0"><option></option><option>YES</option><option>NO</option><option>NOT GIVEN</option></select>
+                                        <select id="R40" class="p-1 border border-slate-300 rounded bg-slate-50 w-full sm:w-28 shrink-0"><option></option><option>YES</option><option>NO</option><option>NOT GIVEN</option></select>
                                         <p class="text-slate-700 text-sm">40. The need to keep up with new information is hugely exaggerated in today's world.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="p-6 border-t border-slate-200 bg-slate-50 flex flex-col md:flex-row justify-between items-center">
+                    <div id="reading-score-box" class="hidden bg-teal-50 border-2 border-teal-500 rounded-lg p-4 w-full md:w-1/2 mb-4 md:mb-0 shadow-sm">
+                        <p class="font-bold text-teal-800">Automated Cambridge Evaluation:</p>
+                        <p id="reading-score-display" class="text-2xl font-bold text-teal-600 mt-1"></p>
+                    </div>
+                    <button id="btn-grade-read" onclick="gradeReading()" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-8 rounded-lg shadow-md transition-all ml-auto">Submit & Grade Reading</button>
                 </div>
             </div>
         </section>
@@ -554,14 +673,10 @@
                      <img src="bamboo.png" alt="How bamboo fabric is made" class="mx-auto rounded border shadow-sm" style="max-height: 250px;">
                 </div>
 
-                <!-- GOOGLE FORM WRAPPER -->
                 <div class="w-full bg-slate-50 rounded-xl border-2 border-dashed border-teal-500 overflow-hidden relative" style="height: 800px;">
-                    
-                    <!-- HELENA: YOU MUST REPLACE THE SRC LINK BELOW WITH YOUR REAL GOOGLE FORM EMBED LINK -->
                     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf7szbrfkBgSfgCR_UDtj4VIM-VaU0f1Ril6tEouCfUG26kkg/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">
                         <div class="p-10 text-center font-bold text-slate-500">If you are reading this, your Google Form link is broken or missing.</div>
                     </iframe>
-                    
                 </div>
             </div>
         </section>
@@ -605,7 +720,6 @@
             });
             document.getElementById('view-' + tabId).classList.remove('hidden');
             document.getElementById('btn-' + tabId).classList.add('active');
-            
             if(tabId === 'speaking') setDynamicDeadline();
         }
 
@@ -626,6 +740,118 @@
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             const formattedDate = today.toLocaleDateString('en-US', options);
             document.getElementById('dynamic-deadline').innerHTML = `${formattedDate} <br><span class="text-xl mt-1 block font-normal text-slate-600">at 11:59 PM Local Time</span>`;
+        }
+
+        // --- THE RUTHLESS AUTOMATON: GRADING LOGIC ---
+        
+        function cleanText(txt) {
+            return (txt || '').toString().trim().toLowerCase();
+        }
+
+        function calculateBand(score, type) {
+            if(type === 'listening') {
+                if(score >= 39) return '9.0'; if(score >= 37) return '8.5'; if(score >= 35) return '8.0';
+                if(score >= 32) return '7.5'; if(score >= 30) return '7.0'; if(score >= 26) return '6.5';
+                if(score >= 23) return '6.0'; if(score >= 18) return '5.5'; if(score >= 16) return '5.0'; return '< 5.0';
+            } else {
+                if(score >= 39) return '9.0'; if(score >= 37) return '8.5'; if(score >= 35) return '8.0';
+                if(score >= 33) return '7.5'; if(score >= 30) return '7.0'; if(score >= 27) return '6.5';
+                if(score >= 23) return '6.0'; if(score >= 19) return '5.5'; if(score >= 15) return '5.0'; return '< 5.0';
+            }
+        }
+
+        const listeningKey = {
+            1: ['239', 'two hundred thirty-nine', 'two hundred and thirty-nine'],
+            2: ['modern'], 3: ['lamp'], 4: ['aaron'], 5: ['damage'],
+            6: ['electronic'], 7: ['insurance'], 8: ['space'], 9: ['app'], 10: ['exchanges'],
+            11: ['b'], 12: ['a'], 13: ['a'], 14: ['c'], 15: ['b'], 16: ['c'],
+            17: ['b'], 18: ['a'], 19: ['g'], 20: ['e'],
+            21: ['b'], 22: ['a'], 23: ['c'], 24: ['a'], 25: ['c'], 26: ['b'],
+            27: ['f'], 28: ['e'], 29: ['b'], 30: ['d'],
+            31: ['adaptation'], 32: ['cognitive'], 33: ['desks'], 34: ['taps'], 35: ['blue'],
+            36: ['voice'], 37: ['pregnant'], 38: ['shoulders'], 39: ['police'], 40: ['temperature']
+        };
+
+        function gradeListening() {
+            let score = 0;
+            // Q1-Q10 inputs
+            for(let i=1; i<=10; i++) {
+                let val = cleanText(document.getElementById('L'+i)?.value);
+                if(listeningKey[i].includes(val)) score++;
+            }
+            // Q11-Q16 radios
+            for(let i=11; i<=16; i++) {
+                let checked = document.querySelector(`input[name="L${i}"]:checked`);
+                if(checked && listeningKey[i].includes(cleanText(checked.value))) score++;
+            }
+            // Q17-Q20 inputs
+            for(let i=17; i<=20; i++) {
+                let val = cleanText(document.getElementById('L'+i)?.value);
+                if(listeningKey[i].includes(val)) score++;
+            }
+            // Q21-Q26 radios
+            for(let i=21; i<=26; i++) {
+                let checked = document.querySelector(`input[name="L${i}"]:checked`);
+                if(checked && listeningKey[i].includes(cleanText(checked.value))) score++;
+            }
+            // Q27-Q40 inputs/selects
+            for(let i=27; i<=40; i++) {
+                let val = cleanText(document.getElementById('L'+i)?.value);
+                if(listeningKey[i].includes(val)) score++;
+            }
+            
+            document.getElementById('listening-score-display').innerHTML = `Score: ${score} / 40 <br><span class="text-sm text-teal-700">Estimated Band: ${calculateBand(score, 'listening')}</span>`;
+            document.getElementById('listening-score-box').classList.remove('hidden');
+            document.getElementById('btn-grade-listen').classList.add('hidden');
+        }
+
+        const readingKey = {
+            1: ['false'], 2: ['false'], 3: ['not given'], 4: ['false'], 5: ['not given'], 6: ['true'], 7: ['true'],
+            8: ['paint'], 9: ['topspin'], 10: ['training'], 11: ['intestines', 'gut'], 12: ['weights'], 13: ['grips'],
+            14: ['d'], 15: ['g'], 16: ['c'], 17: ['a'], 18: ['g'], 19: ['b'],
+            24: ['grain'], 25: ['punishment'], 26: ['ransom'],
+            27: ['d'], 28: ['a'], 29: ['c'], 30: ['d'],
+            31: ['g'], 32: ['j'], 33: ['h'], 34: ['b'], 35: ['e'], 36: ['c'],
+            37: ['yes'], 38: ['not given'], 39: ['no'], 40: ['not given']
+        };
+
+        function gradeReading() {
+            let score = 0;
+            // Q1-Q19
+            for(let i=1; i<=19; i++) {
+                let val = cleanText(document.getElementById('R'+i)?.value);
+                if(readingKey[i].includes(val)) score++;
+            }
+            
+            // Q20-21 (Checkboxes, in either order B, D)
+            let checked2021 = Array.from(document.querySelectorAll('input[name="R20_21"]:checked')).map(cb => cleanText(cb.value));
+            score += checked2021.filter(val => ['b', 'd'].includes(val)).length; // Max 2 points
+            
+            // Q22-23 (Checkboxes, in either order C, E)
+            let checked2223 = Array.from(document.querySelectorAll('input[name="R22_23"]:checked')).map(cb => cleanText(cb.value));
+            score += checked2223.filter(val => ['c', 'e'].includes(val)).length; // Max 2 points
+            
+            // Q24-Q26
+            for(let i=24; i<=26; i++) {
+                let val = cleanText(document.getElementById('R'+i)?.value);
+                if(readingKey[i].includes(val)) score++;
+            }
+            
+            // Q27-Q30 Radios
+            for(let i=27; i<=30; i++) {
+                let checked = document.querySelector(`input[name="R${i}"]:checked`);
+                if(checked && readingKey[i].includes(cleanText(checked.value))) score++;
+            }
+            
+            // Q31-Q40 Selects
+            for(let i=31; i<=40; i++) {
+                let val = cleanText(document.getElementById('R'+i)?.value);
+                if(readingKey[i].includes(val)) score++;
+            }
+
+            document.getElementById('reading-score-display').innerHTML = `Score: ${score} / 40 <br><span class="text-sm text-teal-700">Estimated Band: ${calculateBand(score, 'reading')}</span>`;
+            document.getElementById('reading-score-box').classList.remove('hidden');
+            document.getElementById('btn-grade-read').classList.add('hidden');
         }
     </script>
 </body>
