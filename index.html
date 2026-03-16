@@ -68,9 +68,13 @@
             content: '○';
             color: #64748b;
         }
+        
+        /* Evidence Tracker Highlights */
+        .highlight-yellow { background-color: #fef08a; border-radius: 2px; padding: 0.1em 0; transition: background-color 0.2s; }
+        .highlight-teal { background-color: #99f6e4; border-radius: 2px; padding: 0.1em 0; transition: background-color 0.2s; }
+        .highlight-rose { background-color: #fecdd3; border-radius: 2px; padding: 0.1em 0; transition: background-color 0.2s; }
+        .toolbar-btn.active-color { transform: scale(1.15); box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0d9488; }
     </style>
-    <!-- Application Structure Plan: Full deployment with automated grading logic. HTML structurally modified to include unique IDs/Names for all 80 receptive questions. JavaScript dictionaries loaded with answer keys to simulate Cambridge examiner stringency. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 </head>
 <body class="flex flex-col min-h-screen">
 
@@ -153,23 +157,23 @@
                             <tbody class="divide-y divide-slate-200">
                                 <tr>
                                     <td class="p-3 font-medium">Peak Rentals</td>
-                                    <td class="p-3 border-l border-slate-200">Prices range from $105 to $ <input type="text" id="L1" class="q-input"> per room per month.</td>
-                                    <td class="p-3 border-l border-slate-200">The furniture is very <input type="text" id="L2" class="q-input">.<br>Delivers in 1-2 days.<br>Special offer: free <input type="text" id="L3" class="q-input"> with every living room set.</td>
+                                    <td class="p-3 border-l border-slate-200">Prices range from $105 to $ <span class="font-bold text-teal-700 mx-1">1</span><input type="text" id="L1" class="q-input"> per room per month.</td>
+                                    <td class="p-3 border-l border-slate-200">The furniture is very <span class="font-bold text-teal-700 mx-1">2</span><input type="text" id="L2" class="q-input">.<br>Delivers in 1-2 days.<br>Special offer: free <span class="font-bold text-teal-700 mx-1">3</span><input type="text" id="L3" class="q-input"> with every living room set.</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-3"><input type="text" id="L4" class="q-input"> and Oliver</td>
-                                    <td class="p-3 border-l border-slate-200">Mid-range prices.<br>12% monthly free for 5 <input type="text" id="L5" class="q-input">.</td>
+                                    <td class="p-3"><span class="font-bold text-teal-700 mx-1">4</span><input type="text" id="L4" class="q-input"> and Oliver</td>
+                                    <td class="p-3 border-l border-slate-200">Mid-range prices.<br>12% monthly free for 5 <span class="font-bold text-teal-700 mx-1">5</span><input type="text" id="L5" class="q-input">.</td>
                                     <td class="p-3 border-l border-slate-200">Also offers a cleaning service.</td>
                                 </tr>
                                 <tr>
                                     <td class="p-3">Larch Furniture</td>
-                                    <td class="p-3 border-l border-slate-200">Offers cheapest prices for renting furniture and <input type="text" id="L6" class="q-input"> items.</td>
-                                    <td class="p-3 border-l border-slate-200">Must have own <input type="text" id="L7" class="q-input">.<br>Minimum contract length: six months.</td>
+                                    <td class="p-3 border-l border-slate-200">Offers cheapest prices for renting furniture and <span class="font-bold text-teal-700 mx-1">6</span><input type="text" id="L6" class="q-input"> items.</td>
+                                    <td class="p-3 border-l border-slate-200">Must have own <span class="font-bold text-teal-700 mx-1">7</span><input type="text" id="L7" class="q-input">.<br>Minimum contract length: six months.</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-3"><input type="text" id="L8" class="q-input"> Rentals</td>
-                                    <td class="p-3 border-l border-slate-200">See the <input type="text" id="L9" class="q-input"> for the most up-to-date prices.</td>
-                                    <td class="p-3 border-l border-slate-200"><input type="text" id="L10" class="q-input"> are allowed within 7 days of delivery.</td>
+                                    <td class="p-3"><span class="font-bold text-teal-700 mx-1">8</span><input type="text" id="L8" class="q-input"> Rentals</td>
+                                    <td class="p-3 border-l border-slate-200">See the <span class="font-bold text-teal-700 mx-1">9</span><input type="text" id="L9" class="q-input"> for the most up-to-date prices.</td>
+                                    <td class="p-3 border-l border-slate-200"><span class="font-bold text-teal-700 mx-1">10</span><input type="text" id="L10" class="q-input"> are allowed within 7 days of delivery.</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -340,20 +344,20 @@
                         <div class="mb-6">
                             <h5 class="font-bold text-slate-700 mb-2">Definition</h5>
                             <ul class="bullet-list text-slate-700">
-                                <li>Designing products that can be accessed by a diverse range of people without the need for any <input type="text" id="L31" class="q-input"></li>
-                                <li>Not the same as universal design: that is design for everyone, including catering for people with <input type="text" id="L32" class="q-input"> problems.</li>
+                                <li>Designing products that can be accessed by a diverse range of people without the need for any <span class="font-bold text-teal-700 mx-1">31</span><input type="text" id="L31" class="q-input"></li>
+                                <li>Not the same as universal design: that is design for everyone, including catering for people with <span class="font-bold text-teal-700 mx-1">32</span><input type="text" id="L32" class="q-input"> problems.</li>
                             </ul>
                         </div>
 
                         <div class="mb-6">
                             <h5 class="font-bold text-slate-700 mb-2">Examples of inclusive design</h5>
                             <ul class="bullet-list text-slate-700">
-                                <li><input type="text" id="L33" class="q-input"> which are adjustable, avoiding back or neck problems</li>
-                                <li><input type="text" id="L34" class="q-input"> in public toilets which are easier to use</li>
+                                <li><span class="font-bold text-teal-700 mx-1">33</span><input type="text" id="L33" class="q-input"> which are adjustable, avoiding back or neck problems</li>
+                                <li><span class="font-bold text-teal-700 mx-1">34</span><input type="text" id="L34" class="q-input"> in public toilets which are easier to use</li>
                                 <li>To assist the elderly:
                                     <ul class="sub-bullet-list mt-2 ml-4">
-                                        <li>designers avoid using <input type="text" id="L35" class="q-input"> in interfaces</li>
-                                        <li>people can make commands using a mouse, keyboard or their <input type="text" id="L36" class="q-input"></li>
+                                        <li>designers avoid using <span class="font-bold text-teal-700 mx-1">35</span><input type="text" id="L35" class="q-input"> in interfaces</li>
+                                        <li>people can make commands using a mouse, keyboard or their <span class="font-bold text-teal-700 mx-1">36</span><input type="text" id="L36" class="q-input"></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -369,14 +373,14 @@
                                 </li>
                                 <li class="font-semibold mt-2">Safety
                                     <ul class="sub-bullet-list font-normal mt-1 ml-4">
-                                        <li>Seatbelts are especially problematic for <input type="text" id="L37" class="q-input"> women.</li>
-                                        <li>PPE jackets are often unsuitable because of the size of women's <input type="text" id="L38" class="q-input"></li>
-                                        <li>PPE for female <input type="text" id="L39" class="q-input"> officers dealing with emergencies is the worst.</li>
+                                        <li>Seatbelts are especially problematic for <span class="font-bold text-teal-700 mx-1">37</span><input type="text" id="L37" class="q-input"> women.</li>
+                                        <li>PPE jackets are often unsuitable because of the size of women's <span class="font-bold text-teal-700 mx-1">38</span><input type="text" id="L38" class="q-input"></li>
+                                        <li>PPE for female <span class="font-bold text-teal-700 mx-1">39</span><input type="text" id="L39" class="q-input"> officers dealing with emergencies is the worst.</li>
                                     </ul>
                                 </li>
                                 <li class="font-semibold mt-2">Comfort in the workplace
                                     <ul class="sub-bullet-list font-normal mt-1 ml-4">
-                                        <li>The <input type="text" id="L40" class="q-input"> in offices is often too low for women.</li>
+                                        <li>The <span class="font-bold text-teal-700 mx-1">40</span><input type="text" id="L40" class="q-input"> in offices is often too low for women.</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -397,7 +401,8 @@
 
         <!-- READING SECTION -->
         <section id="view-reading" class="hidden animate-fade-in">
-            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden relative">
+                
                 <div class="p-6 md:p-8 border-b border-slate-200 bg-slate-50">
                     <h2 class="text-3xl font-bold mb-2 text-slate-800">Section 2: Reading</h2>
                     <p class="text-slate-500 mb-4">You have 60 minutes to complete all three passages. Toggle between the passages using the navigation below.</p>
@@ -409,18 +414,29 @@
                     </div>
                 </div>
 
+                <!-- EVIDENCE TRACKER TOOLBAR -->
+                <div class="bg-slate-100 py-2 px-4 flex flex-wrap gap-3 items-center border-b border-slate-300 justify-center sticky top-0 z-10 shadow-sm">
+                    <span class="text-xs font-bold text-slate-600 uppercase tracking-wider mr-2">Evidence Tracker:</span>
+                    <button onclick="setHighlightColor('highlight-yellow', this)" class="toolbar-btn active-color w-6 h-6 rounded-full bg-yellow-200 border border-yellow-400 focus:outline-none transition-transform" title="Highlight Yellow"></button>
+                    <button onclick="setHighlightColor('highlight-teal', this)" class="toolbar-btn w-6 h-6 rounded-full bg-teal-200 border border-teal-400 focus:outline-none transition-transform" title="Highlight Teal"></button>
+                    <button onclick="setHighlightColor('highlight-rose', this)" class="toolbar-btn w-6 h-6 rounded-full bg-rose-200 border border-rose-400 focus:outline-none transition-transform" title="Highlight Rose"></button>
+                    <div class="w-px h-6 bg-slate-300 mx-2 hidden sm:block"></div>
+                    <button onclick="clearHighlights()" class="text-xs text-slate-500 hover:text-slate-800 transition-colors font-medium border border-slate-300 rounded px-2 py-1 bg-white hover:bg-slate-50">Clear All</button>
+                    <span id="highlight-status" class="ml-auto text-xs text-slate-400 italic hidden sm:inline-block">Select text to highlight</span>
+                </div>
+
                 <!-- PASSAGE 1 -->
                 <div id="view-passage1" class="block">
-                    <div class="flex flex-col lg:flex-row h-auto lg:h-[800px]">
+                    <div class="flex flex-col lg:flex-row h-auto lg:h-[750px]">
                         <div class="lg:w-1/2 p-6 lg:p-10 overflow-y-auto border-b lg:border-b-0 lg:border-r border-slate-200 bg-amber-50/20">
                             <h4 class="text-2xl font-bold mb-6 text-center text-slate-800">How tennis rackets have changed</h4>
-                            <div class="reading-text">
+                            <div class="reading-text selection-area">
                                 <p>In 2016, the British professional tennis player Andy Murray was ranked as the world's number one. It was an incredible achievement by any standard – made even more remarkable by the fact that he did this during a period considered to be one of the strongest in the sport's history, competing against the likes of Rafael Nadal, Roger Federer and Novak Djokovic, to name just a few. Yet five years previously, he had been regarded as a talented outsider who entered but never won the major tournaments.</p>
                                 <p>Of the changes that account for this transformation, one was visible and widely publicised: in 2011, Murray invited former number one player Ivan Lendl onto his coaching team – a valuable addition that had a visible impact on the player's playing style. Another change was so subtle as to pass more or less unnoticed. Like many players, Murray has long preferred a racket that consists of two types of string: one for the mains (verticals) and another for the crosses (horizontals). While he continued to use natural string in the crosses, in 2012 he switched to a synthetic string for the mains. A small change, perhaps, but its importance should not be underestimated.</p>
                                 <p>The modification that Murray made is just one of a number of options available to players looking to tweak their rackets in order to improve their games. 'Touring professionals have their rackets customised to their specific needs,' says Colin Triplow, a UK-based professional racket stringer. 'It's a highly important part of performance maximisation.' Consequently, the specific rackets used by the world's elite are not actually readily available to the public; rather, each racket is individually made to suit the player who uses it. Take the US professional tennis players Mike and Bob Bryan, for example: 'We're very particular with our racket specifications,' they say. 'All our rackets are sent from our manufacturer to Tampa, Florida, where our frames go through a... thorough customisation process.' They explain how they have adjusted not only racket length, but even experimented with different kinds of paint. The rackets they use now weigh more than the average model and also have a denser string pattern (i.e. more crosses and mains).</p>
                                 <p>The primary reason for these modifications is simple: as the line between winning and losing becomes thinner and thinner, even these slight changes become more and more important. As a result, players and their teams are becoming increasingly creative with the modifications to their rackets as they look to maximise their competitive advantage.</p>
                                 <p>Racket modifications mainly date back to the 1970s, when the amateur German tennis player Werner Fischer started playing with the so-called spaghetti-strung racket. It created a string bed that generated so much topspin that it was quickly banned by the International Tennis Federation. However, within a decade or two, racket modification became a regularity. Today it is, in many ways, an aspect of the game that is equal in significance to nutrition or training.</p>
-                                <p>Modifications can be divided into two categories: those to the string bed and those to the racket frame. The former is far more common than the latter: the choice of the strings and the tension with which they are installed is something that nearly all professional players experiment with. They will continually change it depending on various factors including the court surface, climatic conditions, and game styles. Some will even change it depending on how they feel at the time.</p>
+                                <p>Modifications can be divided into two categories: those to the string bed and those to the racket frame. The former is far commoner than the latter: the choice of the strings and the tension with which they are installed is something that nearly all professional players experiment with. They will continually change it depending on various factors including the court surface, climatic conditions, and game styles. Some will even change it depending on how they feel at the time.</p>
                                 <p>At one time, all tennis rackets were strung with natural gut made from the outer layer of sheep or cow intestines. This all changed in the early 1990s with the development of synthetic strings that were cheaper and more durable. They are made from three materials: nylon (relatively durable and affordable), Kevlar (too stiff to be used alone) or co-polyester (polyester combined with additives that enhance its performance). Even so, many professional players continue to use a 'hybrid set-up', where a combination of both synthetic and natural strings are used.</p>
                                 <p>Of the synthetics, co-polyester is by far the most widely used. It's a perfect fit for the style of tennis now played, where players tend to battle it out from the back of the court rather than coming to the net. Studies indicate that the average spin from a co-polyester string is 25% greater than that from natural string or other synthetics. In a sense, the development of co-polyester strings has revolutionised the game.</p>
                                 <p>However, many players go beyond these basic adjustments to the strings and make changes to the racket frame itself. For example, much of the serving power of US professional player Pete Sampras was attributed to the addition of four to five lead weights onto his rackets, and today many professionals have the weight adjusted during the manufacturing process.</p>
@@ -468,12 +484,12 @@
                             <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
                                 <h6 class="font-bold text-center mb-4 text-slate-800">The tennis racket and how it has changed</h6>
                                 <ul class="bullet-list text-slate-700 text-sm space-y-3">
-                                    <li>Mike and Bob Bryan made changes to the types of <input type="text" id="R8" class="q-input bg-white"> used on their racket frames.</li>
-                                    <li>Players were not allowed to use the spaghetti-strung racket because of the amount of <input type="text" id="R9" class="q-input bg-white"> it created.</li>
-                                    <li>Changes to rackets can be regarded as being as important as players' diets or the <input type="text" id="R10" class="q-input bg-white"> they do.</li>
-                                    <li>All rackets used to have natural strings made from the <input type="text" id="R11" class="q-input bg-white"> of animals.</li>
-                                    <li>Pete Sampras had metal <input type="text" id="R12" class="q-input bg-white"> put into the frames of his rackets.</li>
-                                    <li>Gonçalo Oliveira changed the <input type="text" id="R13" class="q-input bg-white"> on his racket handles.</li>
+                                    <li>Mike and Bob Bryan made changes to the types of <span class="font-bold text-teal-700 mx-1">8</span><input type="text" id="R8" class="q-input bg-white"> used on their racket frames.</li>
+                                    <li>Players were not allowed to use the spaghetti-strung racket because of the amount of <span class="font-bold text-teal-700 mx-1">9</span><input type="text" id="R9" class="q-input bg-white"> it created.</li>
+                                    <li>Changes to rackets can be regarded as being as important as players' diets or the <span class="font-bold text-teal-700 mx-1">10</span><input type="text" id="R10" class="q-input bg-white"> they do.</li>
+                                    <li>All rackets used to have natural strings made from the <span class="font-bold text-teal-700 mx-1">11</span><input type="text" id="R11" class="q-input bg-white"> of animals.</li>
+                                    <li>Pete Sampras had metal <span class="font-bold text-teal-700 mx-1">12</span><input type="text" id="R12" class="q-input bg-white"> put into the frames of his rackets.</li>
+                                    <li>Gonçalo Oliveira changed the <span class="font-bold text-teal-700 mx-1">13</span><input type="text" id="R13" class="q-input bg-white"> on his racket handles.</li>
                                 </ul>
                             </div>
                         </div>
@@ -482,10 +498,10 @@
 
                 <!-- PASSAGE 2 -->
                 <div id="view-passage2" class="hidden">
-                    <div class="flex flex-col lg:flex-row h-auto lg:h-[800px]">
+                    <div class="flex flex-col lg:flex-row h-auto lg:h-[750px]">
                         <div class="lg:w-1/2 p-6 lg:p-10 overflow-y-auto border-b lg:border-b-0 lg:border-r border-slate-200 bg-amber-50/20">
                             <h4 class="text-2xl font-bold mb-6 text-center text-slate-800">The pirates of the ancient Mediterranean</h4>
-                            <div class="reading-text">
+                            <div class="reading-text selection-area">
                                 <p><strong>A</strong> When one mentions pirates, an image springs to most people's minds of a crew of misfits, daredevils and adventurers in command of a tall sailing ship in the Caribbean Sea. Yet from the first to the third millennium BCE, thousands of years before these swashbucklers began spreading fear across the Caribbean, pirates prowled the Mediterranean, raiding merchant ships and threatening vital trade routes. However, despite all efforts and the might of various ancient states, piracy could not be stopped. The situation remained unchanged for thousands of years. Only when the pirates directly threatened the interests of ancient Rome did the Roman Republic organise a massive fleet to eliminate piracy. Under the command of the Roman general Pompey, Rome eradicated piracy, transforming the Mediterranean into 'Mare Nostrum' (Our Sea).</p>
                                 <p><strong>B</strong> Although piracy in the Mediterranean is first recorded in ancient Egypt during the reign of Pharaoh Amenhotep III (c 1390–1353 BCE), it is reasonable to assume it predated this powerful civilisation. This is partly due to the great importance the Mediterranean held at this time, and partly due to its geography. While the Mediterranean region is predominantly fertile, some parts are rugged and hilly, even mountainous. In the ancient times, the inhabitants of these areas relied heavily on marine resources, including fish and salt. Most had their own boats, possessed good seafaring skills, and unsurpassed knowledge of the local coastline and sailing routes. Thus, it is not surprising that during hardships, these men turned to piracy. Geography itself further benefited the pirates, with the numerous coves along the coast providing places for them to hide their boats and strike undetected. Before the invention of ocean-going caravels in the 15th century, ships could not easily cross long distances over open water. Thus, in the ancient world most were restricted to a few well-known navigable routes that followed the coastline. Caught in a trap, a slow merchant ship laden with goods had no other option but to surrender. In addition, knowledge of the local area helped the pirates to avoid retaliation once a state fleet arrived.</p>
                                 <p><strong>C</strong> One should also add that it was not unknown in the first and second millennia BCE for governments to resort to pirates' services, especially during wartime, employing their skills and numbers against their opponents. A pirate fleet would serve in the first wave of attack, preparing the way for the navy. Some of the regions were known for providing safe harbours to pirates, who, in return, boosted the local economy.</p>
@@ -550,7 +566,7 @@
                             <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
                                 <h6 class="font-bold text-center mb-4 text-slate-800">Ancient Rome and piracy</h6>
                                 <p class="text-sm text-slate-700 leading-loose">
-                                    Piracy was an issue ancient Rome had to deal with, but it also brought some benefits for Rome. For example, pirates supplied slaves that were important for Rome's industries. However, attacks on vessels transporting <input type="text" id="R24" class="q-input bg-white w-24"> to Rome resulted in calls for <input type="text" id="R25" class="q-input bg-white w-24"> for the pirates responsible. Nevertheless, piracy continued, with some pirates demanding a <input type="text" id="R26" class="q-input bg-white w-24"> for the return of the Roman officials they captured.
+                                    Piracy was an issue ancient Rome had to deal with, but it also brought some benefits for Rome. For example, pirates supplied slaves that were important for Rome's industries. However, attacks on vessels transporting <span class="font-bold text-teal-700 mx-1">24</span><input type="text" id="R24" class="q-input bg-white w-24"> to Rome resulted in calls for <span class="font-bold text-teal-700 mx-1">25</span><input type="text" id="R25" class="q-input bg-white w-24"> for the pirates responsible. Nevertheless, piracy continued, with some pirates demanding a <span class="font-bold text-teal-700 mx-1">26</span><input type="text" id="R26" class="q-input bg-white w-24"> for the return of the Roman officials they captured.
                                 </p>
                             </div>
                         </div>
@@ -559,10 +575,10 @@
 
                 <!-- PASSAGE 3 -->
                 <div id="view-passage3" class="hidden">
-                    <div class="flex flex-col lg:flex-row h-auto lg:h-[800px]">
+                    <div class="flex flex-col lg:flex-row h-auto lg:h-[750px]">
                         <div class="lg:w-1/2 p-6 lg:p-10 overflow-y-auto border-b lg:border-b-0 lg:border-r border-slate-200 bg-amber-50/20">
                             <h4 class="text-2xl font-bold mb-6 text-center text-slate-800">The persistence and peril of misinformation</h4>
-                            <div class="reading-text">
+                            <div class="reading-text selection-area">
                                 <p>Misinformation – both deliberately promoted and accidentally shared – is perhaps an inevitable part of the world in which we live, but it is not a new problem. People likely have lied to one another for roughly as long as verbal communication has existed. Deceiving others can offer an apparent opportunity to gain strategic advantage, to motivate others to action, or even to protect interpersonal bonds. Moreover, people inadvertently have been sharing inaccurate information with one another for thousands of years.</p>
                                 <p>However, we currently live in an era in which technology enables information to reach large audiences distributed across the globe, and thus the potential for immediate and widespread effects from misinformation now looms larger than in the past. Yet the means to correct misinformation might, over time, be found in those same patterns of mass communication and of the facilitated spread of information.</p>
                                 <p>The main worry regarding misinformation is its potential to unduly influence attitudes and behavior, leading people to think and act differently than they would if they were correctly informed, as suggested by the research teams of Stephan Lewandowsky of the University of Bristol and Elizabeth Marsh of Duke University, among others. In other words, we worry that misinformation might lead people to hold misperceptions (or false beliefs) and that these misperceptions, especially when they occur among large groups of people, may have detrimental, downstream consequences for health, social harmony, and the political climate.</p>
@@ -742,6 +758,66 @@
             document.getElementById('dynamic-deadline').innerHTML = `${formattedDate} <br><span class="text-xl mt-1 block font-normal text-slate-600">at 11:59 PM Local Time</span>`;
         }
 
+        // --- EVIDENCE TRACKER (HIGHLIGHTER) LOGIC ---
+        let currentHighlightColor = 'highlight-yellow';
+
+        function setHighlightColor(colorClass, btnElement) {
+            currentHighlightColor = colorClass;
+            document.querySelectorAll('.toolbar-btn').forEach(btn => btn.classList.remove('active-color'));
+            btnElement.classList.add('active-color');
+            const status = document.getElementById('highlight-status');
+            status.innerText = 'Ready to highlight...';
+            status.classList.remove('text-rose-500');
+            status.classList.add('text-slate-400');
+        }
+
+        function clearHighlights() {
+            const highlights = document.querySelectorAll('.highlight-yellow, .highlight-teal, .highlight-rose');
+            highlights.forEach(h => {
+                const parent = h.parentNode;
+                while (h.firstChild) parent.insertBefore(h.firstChild, h);
+                parent.removeChild(h);
+            });
+            document.querySelectorAll('.selection-area').forEach(area => area.normalize());
+        }
+
+        function handleHighlightEvent(e) {
+            // Only trigger if we are inside a designated text area
+            if (!e.target.closest('.selection-area')) return;
+            
+            // Allow native selection to settle
+            setTimeout(() => {
+                const selection = window.getSelection();
+                if (!selection || selection.isCollapsed || selection.toString().trim() === '') return;
+
+                const range = selection.getRangeAt(0);
+                
+                try {
+                    const span = document.createElement('span');
+                    span.className = currentHighlightColor;
+                    range.surroundContents(span);
+                    selection.removeAllRanges();
+                } catch (err) {
+                    // surroundContents throws an error if the selection spans across multiple DOM nodes (e.g., across paragraphs)
+                    // We catch this to prevent breaking the layout and gently guide the student.
+                    const status = document.getElementById('highlight-status');
+                    status.innerText = 'Please highlight within a single paragraph.';
+                    status.classList.remove('text-slate-400');
+                    status.classList.add('text-rose-500');
+                    setTimeout(() => {
+                        status.innerText = 'Select text to highlight';
+                        status.classList.remove('text-rose-500');
+                        status.classList.add('text-slate-400');
+                    }, 3000);
+                    selection.removeAllRanges();
+                }
+            }, 50);
+        }
+
+        document.addEventListener('mouseup', handleHighlightEvent);
+        document.addEventListener('touchend', handleHighlightEvent);
+
+
         // --- THE RUTHLESS AUTOMATON: GRADING LOGIC ---
         
         function cleanText(txt) {
@@ -770,6 +846,18 @@
             27: ['f'], 28: ['e'], 29: ['b'], 30: ['d'],
             31: ['adaptation'], 32: ['cognitive'], 33: ['desks'], 34: ['taps'], 35: ['blue'],
             36: ['voice'], 37: ['pregnant'], 38: ['shoulders'], 39: ['police'], 40: ['temperature']
+        };
+
+        const readingKey = {
+            1: ['false'], 2: ['true'], 3: ['not given'], 4: ['false'], 5: ['not given'],
+            6: ['true'], 7: ['true'], 8: ['paint'], 9: ['topspin'], 10: ['training'],
+            11: ['intestines'], 12: ['weights'], 13: ['grips'], 14: ['d'], 15: ['g'],
+            16: ['c'], 17: ['a'], 18: ['g'], 19: ['b'], 
+            // 20 and 21 graded separately in logic
+            // 22 and 23 graded separately in logic
+            24: ['grain'], 25: ['punishment'], 26: ['ransom'], 27: ['d'], 28: ['a'],
+            29: ['c'], 30: ['d'], 31: ['g'], 32: ['j'], 33: ['h'], 34: ['b'],
+            35: ['e'], 36: ['c'], 37: ['yes'], 38: ['not given'], 39: ['no'], 40: ['not given']
         };
 
         function gradeListening() {
@@ -826,7 +914,7 @@
             // Q1-Q19
             for(let i=1; i<=19; i++) {
                 let val = cleanText(document.getElementById('R'+i)?.value);
-                if(readingKey[i].includes(val)) score++;
+                if(readingKey[i] && readingKey[i].includes(val)) score++;
             }
             
             // Q20-21 (Checkboxes, in either order B, D)
@@ -840,19 +928,19 @@
             // Q24-Q26
             for(let i=24; i<=26; i++) {
                 let val = cleanText(document.getElementById('R'+i)?.value);
-                if(readingKey[i].includes(val)) score++;
+                if(readingKey[i] && readingKey[i].includes(val)) score++;
             }
             
             // Q27-Q30 Radios
             for(let i=27; i<=30; i++) {
                 let checked = document.querySelector(`input[name="R${i}"]:checked`);
-                if(checked && readingKey[i].includes(cleanText(checked.value))) score++;
+                if(checked && readingKey[i] && readingKey[i].includes(cleanText(checked.value))) score++;
             }
             
             // Q31-Q40 Selects
             for(let i=31; i<=40; i++) {
                 let val = cleanText(document.getElementById('R'+i)?.value);
-                if(readingKey[i].includes(val)) score++;
+                if(readingKey[i] && readingKey[i].includes(val)) score++;
             }
 
             document.getElementById('reading-score-display').innerHTML = `
