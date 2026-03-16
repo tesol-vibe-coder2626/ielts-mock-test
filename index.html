@@ -800,20 +800,26 @@
                 if(listeningKey[i].includes(val)) score++;
             }
             
-            document.getElementById('listening-score-display').innerHTML = `Score: ${score} / 40 <br><span class="text-sm text-teal-700">Estimated Band: ${calculateBand(score, 'listening')}</span>`;
+            document.getElementById('listening-score-display').innerHTML = `
+                <div class="mt-2 mb-4">
+                    <span class="text-5xl font-black text-teal-700">${score}</span><span class="text-2xl text-teal-600 font-bold"> / 40</span>
+                </div>
+                <div class="inline-block bg-teal-600 text-white px-4 py-1 rounded-full font-bold uppercase tracking-widest text-sm mb-6">
+                    Estimated Band: ${calculateBand(score, 'listening')}
+                </div>
+                
+                <div class="p-5 bg-rose-50 border-l-4 border-rose-600 rounded-r shadow-inner text-left">
+                    <p class="text-rose-800 font-black text-lg flex items-center gap-2 mb-2">
+                        <span class="text-2xl">📸</span> MANDATORY EVIDENCE REQUIRED
+                    </p>
+                    <p class="text-rose-700 text-sm leading-relaxed font-medium">
+                        This system operates on a secure, closed loop and <strong>does not</strong> save data to a central server. You must take a clear screenshot of this entire box right now and send it to Ms. Helena via Zalo. Without this screenshot, your score will be recorded as 0.0.
+                    </p>
+                </div>
+            `;
             document.getElementById('listening-score-box').classList.remove('hidden');
             document.getElementById('btn-grade-listen').classList.add('hidden');
         }
-
-        const readingKey = {
-            1: ['false'], 2: ['false'], 3: ['not given'], 4: ['false'], 5: ['not given'], 6: ['true'], 7: ['true'],
-            8: ['paint'], 9: ['topspin'], 10: ['training'], 11: ['intestines', 'gut'], 12: ['weights'], 13: ['grips'],
-            14: ['d'], 15: ['g'], 16: ['c'], 17: ['a'], 18: ['g'], 19: ['b'],
-            24: ['grain'], 25: ['punishment'], 26: ['ransom'],
-            27: ['d'], 28: ['a'], 29: ['c'], 30: ['d'],
-            31: ['g'], 32: ['j'], 33: ['h'], 34: ['b'], 35: ['e'], 36: ['c'],
-            37: ['yes'], 38: ['not given'], 39: ['no'], 40: ['not given']
-        };
 
         function gradeReading() {
             let score = 0;
@@ -825,11 +831,11 @@
             
             // Q20-21 (Checkboxes, in either order B, D)
             let checked2021 = Array.from(document.querySelectorAll('input[name="R20_21"]:checked')).map(cb => cleanText(cb.value));
-            score += checked2021.filter(val => ['b', 'd'].includes(val)).length; // Max 2 points
+            score += checked2021.filter(val => ['b', 'd'].includes(val)).length; 
             
             // Q22-23 (Checkboxes, in either order C, E)
             let checked2223 = Array.from(document.querySelectorAll('input[name="R22_23"]:checked')).map(cb => cleanText(cb.value));
-            score += checked2223.filter(val => ['c', 'e'].includes(val)).length; // Max 2 points
+            score += checked2223.filter(val => ['c', 'e'].includes(val)).length; 
             
             // Q24-Q26
             for(let i=24; i<=26; i++) {
@@ -849,7 +855,23 @@
                 if(readingKey[i].includes(val)) score++;
             }
 
-            document.getElementById('reading-score-display').innerHTML = `Score: ${score} / 40 <br><span class="text-sm text-teal-700">Estimated Band: ${calculateBand(score, 'reading')}</span>`;
+            document.getElementById('reading-score-display').innerHTML = `
+                <div class="mt-2 mb-4">
+                    <span class="text-5xl font-black text-teal-700">${score}</span><span class="text-2xl text-teal-600 font-bold"> / 40</span>
+                </div>
+                <div class="inline-block bg-teal-600 text-white px-4 py-1 rounded-full font-bold uppercase tracking-widest text-sm mb-6">
+                    Estimated Band: ${calculateBand(score, 'reading')}
+                </div>
+                
+                <div class="p-5 bg-rose-50 border-l-4 border-rose-600 rounded-r shadow-inner text-left">
+                    <p class="text-rose-800 font-black text-lg flex items-center gap-2 mb-2">
+                        <span class="text-2xl">📸</span> MANDATORY EVIDENCE REQUIRED
+                    </p>
+                    <p class="text-rose-700 text-sm leading-relaxed font-medium">
+                        This system operates on a secure, closed loop and <strong>does not</strong> save data to a central server. You must take a clear screenshot of this entire box right now and send it to Ms. Helena via Zalo. Without this screenshot, your score will be recorded as 0.0.
+                    </p>
+                </div>
+            `;
             document.getElementById('reading-score-box').classList.remove('hidden');
             document.getElementById('btn-grade-read').classList.add('hidden');
         }
