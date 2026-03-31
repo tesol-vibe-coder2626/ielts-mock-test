@@ -294,7 +294,7 @@
 
                 <div class="flex flex-col md:flex-row justify-between items-center border-t border-slate-200 pt-6">
                     <div id="listening-score-box" class="hidden bg-amber-50 border-2 border-amber-500 rounded-lg p-4 mb-4 md:mb-0 w-full md:w-1/2 shadow-sm">
-                        <p class="font-bold text-amber-800">Automated Cambridge Evaluation (Weighted Projection):</p>
+                        <p class="font-bold text-amber-800">Automated Cambridge Evaluation:</p>
                         <p id="listening-score-display" class="text-2xl font-bold text-amber-600 mt-1"></p>
                     </div>
                     <button id="btn-grade-listen" onclick="gradeListening()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-lg shadow-md transition-all ml-auto">Submit & Grade Listening</button>
@@ -415,7 +415,7 @@
 
                 <div class="p-6 border-t border-slate-200 bg-slate-50 flex flex-col md:flex-row justify-between items-center">
                     <div id="reading-score-box" class="hidden bg-amber-50 border-2 border-amber-500 rounded-lg p-4 w-full md:w-1/2 mb-4 md:mb-0 shadow-sm">
-                        <p class="font-bold text-amber-800">Automated Cambridge Evaluation (Weighted Projection):</p>
+                        <p class="font-bold text-amber-800">Automated Cambridge Evaluation:</p>
                         <p id="reading-score-display" class="text-2xl font-bold text-amber-600 mt-1"></p>
                     </div>
                     <button id="btn-grade-read" onclick="gradeReading()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-lg shadow-md transition-all ml-auto">Submit & Grade Reading</button>
@@ -563,27 +563,17 @@
         document.addEventListener('touchend', handleHighlightEvent);
 
 
-        // --- THE RUTHLESS AUTOMATON: GRADING LOGIC (WEIGHTED PROJECTION FOR QUICK MODE) ---
+        // --- THE RUTHLESS AUTOMATON: GRADING LOGIC (DYNAMIC PROJECTION FOR QUICK MODE) ---
         
         function cleanText(txt) {
             return (txt || '').toString().trim().toLowerCase();
         }
 
-        // Weighted psychometric estimation for accelerated mode
-        function calculateQuickBand(score, type) {
-            if (type === 'listening') { 
-                // Assumed baseline competency for the unattempted Parts 1 & 2 is 17 out of 20
-                let projectedScore = score + 17;
-                if(projectedScore >= 39) return '9.0'; if(projectedScore >= 37) return '8.5'; if(projectedScore >= 35) return '8.0';
-                if(projectedScore >= 32) return '7.5'; if(projectedScore >= 30) return '7.0'; if(projectedScore >= 26) return '6.5';
-                if(projectedScore >= 23) return '6.0'; if(projectedScore >= 18) return '5.5'; if(projectedScore >= 16) return '5.0'; return '< 5.0';
-            } else { 
-                // Assumed baseline competency for the unattempted Passages 1 & 2 is 21 out of 26
-                let projectedScore = score + 21;
-                if(projectedScore >= 39) return '9.0'; if(projectedScore >= 37) return '8.5'; if(projectedScore >= 35) return '8.0';
-                if(projectedScore >= 33) return '7.5'; if(projectedScore >= 30) return '7.0'; if(projectedScore >= 27) return '6.5';
-                if(projectedScore >= 23) return '6.0'; if(projectedScore >= 19) return '5.5'; if(projectedScore >= 15) return '5.0'; return '< 5.0';
-            }
+        // Standard Band Calculator (Translates final projected /40 score)
+        function calculateBandFrom40(score) {
+            if(score >= 39) return '9.0'; if(score >= 37) return '8.5'; if(score >= 35) return '8.0';
+            if(score >= 32) return '7.5'; if(score >= 30) return '7.0'; if(score >= 26) return '6.5';
+            if(score >= 23) return '6.0'; if(score >= 18) return '5.5'; if(score >= 16) return '5.0'; return '< 5.0';
         }
 
         // Keys only need to contain Q21-40 for Listening, Q27-40 for Reading.
@@ -603,27 +593,36 @@
             let score = 0;
             const maxScore = 20;
             
-            // Grade Q21-26 Radios
             for(let i=21; i<=26; i++) {
                 let checked = document.querySelector(`input[name="L${i}"]:checked`);
                 if(checked && listeningKey[i].includes(cleanText(checked.value))) score++;
             }
-            // Grade Q27-40 Selects/Inputs
             for(let i=27; i<=40; i++) {
                 let val = cleanText(document.getElementById('L'+i)?.value);
                 if(listeningKey[i].includes(val)) score++;
             }
             
+            // --- DYNAMIC GHOST SCORE LOGIC (Anti-Gambler Measure) ---
+            let ghostScore = 0;
+            if (score <= 4) ghostScore = 2;       // Statistical guessing zone. Harsh penalty.
+            else if (score <= 8) ghostScore = 8;  // Struggling zone.
+            else if (score <= 12) ghostScore = 14; // Moderate competence.
+            else ghostScore = 17;                 // Proven competence. Award full baseline for Parts 1 & 2.
+            
+            let projectedScore = score + ghostScore;
+            
             document.getElementById('listening-score-display').innerHTML = `
                 <div class="mt-2 mb-4">
                     <span class="text-5xl font-black text-amber-700">${score}</span><span class="text-2xl text-amber-600 font-bold"> / ${maxScore}</span>
                 </div>
-                <div class="inline-block bg-amber-600 text-white px-4 py-1 rounded-full font-bold uppercase tracking-widest text-sm mb-2">
-                    Projected Band: ${calculateQuickBand(score, 'listening')}
+                <div class="inline-block bg-amber-600 text-white px-4 py-1 rounded-full font-bold uppercase tracking-widest text-sm mb-2 shadow">
+                    Projected Band: ${calculateBandFrom40(projectedScore)}
                 </div>
-                <p class="text-xs text-amber-700 mt-0 mb-6 font-medium max-w-md">
-                    *This band score is a psychometric projection. It assumes a baseline competency of 17/20 on the unattempted, easier Parts 1 & 2, adding it to your crucible score of ${score}/${maxScore}.
-                </p>
+                <div class="bg-amber-100/50 p-3 rounded-lg border border-amber-200 mt-2 mb-6">
+                    <p class="text-xs text-amber-800 mt-0 font-medium">
+                        <strong>*Dynamic Projection:</strong> Based on your raw score of ${score}, the algorithm assumes a baseline competency of <strong>+${ghostScore}</strong> for the unattempted, easier sections (Parts 1 & 2). Your projected score out of 40 is ${projectedScore}.
+                    </p>
+                </div>
                 
                 <div class="p-5 bg-rose-50 border-l-4 border-rose-600 rounded-r shadow-inner text-left">
                     <p class="text-rose-800 font-black text-lg flex items-center gap-2 mb-2">
@@ -642,27 +641,36 @@
             let score = 0;
             const maxScore = 14;
             
-            // Grade Q27-Q30 Radios
             for(let i=27; i<=30; i++) {
                 let checked = document.querySelector(`input[name="R${i}"]:checked`);
                 if(checked && readingKey[i] && readingKey[i].includes(cleanText(checked.value))) score++;
             }
-            // Grade Q31-Q40 Selects
             for(let i=31; i<=40; i++) {
                 let val = cleanText(document.getElementById('R'+i)?.value);
                 if(readingKey[i] && readingKey[i].includes(val)) score++;
             }
 
+            // --- DYNAMIC GHOST SCORE LOGIC (Anti-Gambler Measure) ---
+            let ghostScore = 0;
+            if (score <= 3) ghostScore = 3;       // Statistical guessing zone. Punitive.
+            else if (score <= 6) ghostScore = 11; // Struggling.
+            else if (score <= 9) ghostScore = 17; // Moderate.
+            else ghostScore = 21;                 // Competent. Award full baseline for Passages 1 & 2.
+
+            let projectedScore = score + ghostScore;
+
             document.getElementById('reading-score-display').innerHTML = `
                 <div class="mt-2 mb-4">
                     <span class="text-5xl font-black text-amber-700">${score}</span><span class="text-2xl text-amber-600 font-bold"> / ${maxScore}</span>
                 </div>
-                <div class="inline-block bg-amber-600 text-white px-4 py-1 rounded-full font-bold uppercase tracking-widest text-sm mb-2">
-                    Projected Band: ${calculateQuickBand(score, 'reading')}
+                <div class="inline-block bg-amber-600 text-white px-4 py-1 rounded-full font-bold uppercase tracking-widest text-sm mb-2 shadow">
+                    Projected Band: ${calculateBandFrom40(projectedScore)}
                 </div>
-                <p class="text-xs text-amber-700 mt-0 mb-6 font-medium max-w-md">
-                    *This band score is a psychometric projection. It assumes a baseline competency of 21/26 on the unattempted, easier Passages 1 & 2, adding it to your crucible score of ${score}/${maxScore}.
-                </p>
+                <div class="bg-amber-100/50 p-3 rounded-lg border border-amber-200 mt-2 mb-6">
+                    <p class="text-xs text-amber-800 mt-0 font-medium">
+                        <strong>*Dynamic Projection:</strong> Based on your raw score of ${score}, the algorithm assumes a baseline competency of <strong>+${ghostScore}</strong> for the unattempted, easier sections (Passages 1 & 2). Your projected score out of 40 is ${projectedScore}.
+                    </p>
+                </div>
                 
                 <div class="p-5 bg-rose-50 border-l-4 border-rose-600 rounded-r shadow-inner text-left">
                     <p class="text-rose-800 font-black text-lg flex items-center gap-2 mb-2">
