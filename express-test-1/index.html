@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Accelerated Diagnostic | MasterClass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        .reading-text {
+            font-family: 'Merriweather', serif;
+            line-height: 1.8;
+            color: #334155;
+            font-size: 1.05rem;
+        }
+        .reading-text p {
+            margin-bottom: 1.25rem;
+        }
+        .nav-btn.active {
+            background-color: #d97706; /* Amber-600 for accelerated mode */
+            color: white;
+            font-weight: 600;
+        }
+        .q-input {
+            border-bottom: 2px solid #cbd5e1;
+            background: transparent;
+            outline: none;
+            padding: 2px 4px;
+            transition: border-color 0.2s;
+            width: 150px;
+            font-family: 'Inter', sans-serif;
+        }
+        .q-input:focus {
+            border-bottom-color: #d97706;
+        }
+        audio {
+            width: 100%;
+            height: 40px;
+            border-radius: 8px;
+            outline: none;
+        }
+        audio::-webkit-media-controls-panel {
+            background-color: #fef3c7; /* Amber-50 */
+        }
+        .bullet-list li {
+            position: relative;
+            padding-left: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        .bullet-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #d97706;
+            font-weight: bold;
+        }
+        .sub-bullet-list li::before {
+            content: '○';
+            color: #64748b;
+        }
+        
+        /* Evidence Tracker Highlights */
+        .highlight-yellow { background-color: #fef08a; border-radius: 2px; padding: 0.1em 0; transition: background-color 0.2s; }
+        .highlight-teal { background-color: #99f6e4; border-radius: 2px; padding: 0.1em 0; transition: background-color 0.2s; }
+        .highlight-rose { background-color: #fecdd3; border-radius: 2px; padding: 0.1em 0; transition: background-color 0.2s; }
+        .toolbar-btn.active-color { transform: scale(1.15); box-shadow: 0 0 0 2px #fff, 0 0 0 4px #d97706; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <header class="bg-slate-900 text-white shadow-md z-10 sticky top-0 border-b-4 border-amber-600">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
+            <h1 class="text-2xl font-bold tracking-tight mb-4 md:mb-0">IELTS Master<span class="text-amber-500">Class</span> <span class="text-xs ml-2 bg-amber-600 px-2 py-1 rounded text-white tracking-widest uppercase">Accelerated</span></h1>
+            <nav class="flex flex-wrap justify-center gap-2">
+                <button onclick="switchTab('dashboard')" id="btn-dashboard" class="nav-btn active px-4 py-2 rounded-md text-sm transition-colors hover:bg-slate-700">Dashboard</button>
+                <button onclick="switchTab('listening')" id="btn-listening" class="nav-btn px-4 py-2 rounded-md text-sm transition-colors hover:bg-slate-700">Listening</button>
+                <button onclick="switchTab('reading')" id="btn-reading" class="nav-btn px-4 py-2 rounded-md text-sm transition-colors hover:bg-slate-700">Reading</button>
+                <button onclick="switchTab('writing')" id="btn-writing" class="nav-btn px-4 py-2 rounded-md text-sm transition-colors hover:bg-slate-700">Writing</button>
+                <button onclick="switchTab('speaking')" id="btn-speaking" class="nav-btn px-4 py-2 rounded-md text-sm transition-colors hover:bg-slate-700">Speaking</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow w-full max-w-7xl mx-auto px-4 py-8">
+
+        <!-- DASHBOARD SECTION -->
+        <section id="view-dashboard" class="block animate-fade-in">
+            <div class="bg-white rounded-xl shadow-sm p-8 mb-8 border border-slate-200">
+                <h2 class="text-3xl font-bold mb-4 text-slate-800">Accelerated Diagnostic Protocol</h2>
+                <p class="text-slate-600 mb-6 text-lg">
+                    You have opted for the 70-minute accelerated diagnostic. This environment is designed to aggressively sample your highest-level cognitive and linguistic abilities by confronting you exclusively with the most difficult sections of the Cambridge curriculum.
+                </p>
+                <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+                    <h3 class="text-xl font-semibold mb-6 text-slate-800 border-b border-amber-200 pb-2">Examination Structure</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-bold text-amber-800 flex items-center gap-2"><span class="text-2xl">&#127911;</span> Section 1: Listening</h4>
+                            <p class="text-slate-700 text-sm mt-1 font-semibold">20 Questions | Approx. 15 Minutes</p>
+                            <p class="text-slate-600 text-sm mt-2 leading-relaxed">Focuses exclusively on complex academic lectures and multi-speaker theoretical discussions (Parts 3 & 4).</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-amber-800 flex items-center gap-2"><span class="text-2xl">&#128214;</span> Section 2: Reading</h4>
+                            <p class="text-slate-700 text-sm mt-1 font-semibold">14 Questions | 20 Minutes</p>
+                            <p class="text-slate-600 text-sm mt-2 leading-relaxed">A single, highly complex academic text testing inference, summary completion, and conceptual matching.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-amber-800 flex items-center gap-2"><span class="text-2xl">&#128221;</span> Section 3: Writing</h4>
+                            <p class="text-slate-700 text-sm mt-1 font-semibold">1 Task | 40 Minutes</p>
+                            <p class="text-slate-600 text-sm mt-2 leading-relaxed">You will complete Task 2 only—a well-reasoned discursive essay on a contemporary social issue. Task 1 is waived.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-amber-800 flex items-center gap-2"><span class="text-2xl">&#128483;</span> Section 4: Speaking</h4>
+                            <p class="text-slate-700 text-sm mt-1 font-semibold">1-on-1 Interview | 11-14 Minutes</p>
+                            <p class="text-slate-600 text-sm mt-2 leading-relaxed">A live evaluation of your spoken fluency and communicative coherence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LISTENING SECTION -->
+        <section id="view-listening" class="hidden animate-fade-in">
+            <div class="bg-white rounded-xl shadow-sm p-6 md:p-10 border border-slate-200 relative">
+                <div class="mb-6 border-b border-slate-200 pb-4">
+                    <h2 class="text-3xl font-bold mb-2 text-slate-800">Section 1: Listening <span class="text-lg font-normal text-amber-600 ml-2">(Parts 3 & 4 Only)</span></h2>
+                    <p class="text-slate-500">Evaluate your comprehension of complex academic discourse.</p>
+                </div>
+
+                <!-- PART 3 -->
+                <div class="mb-12">
+                    <div class="flex flex-col md:flex-row justify-between md:items-center mb-4 bg-slate-100 p-3 rounded border-l-4 border-amber-500">
+                        <h3 class="text-xl font-semibold text-slate-700">Part 3: Theatre Programmes</h3>
+                        <div class="mt-2 md:mt-0 w-full md:w-1/2">
+                            <audio controls controlsList="nodownload"><source src="part3.m4a" type="audio/mp4"></audio>
+                        </div>
+                    </div>
+
+                    <div class="mb-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="col-span-full"><p class="font-semibold text-slate-700 mb-2">Questions 21-26: Choose the correct letter, A, B or C.</p></div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <p class="font-medium mb-2">21. Finn was pleased to discover that their topic</p>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L21" value="A" class="mr-2 accent-amber-600"> A. was not familiar to their module leader.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L21" value="B" class="mr-2 accent-amber-600"> B. had not been chosen by other students.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L21" value="C" class="mr-2 accent-amber-600"> C. did not prove to be difficult to research.</label>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <p class="font-medium mb-2">22. Maya says a mistaken belief about theatre programmes is that</p>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L22" value="A" class="mr-2 accent-amber-600"> A. theatres pay companies to produce them.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L22" value="B" class="mr-2 accent-amber-600"> B. few theatre-goers buy them nowadays.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L22" value="C" class="mr-2 accent-amber-600"> C. they contain far more adverts than previously.</label>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <p class="font-medium mb-2">23. Finn was surprised that, in early British theatre, programmes</p>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L23" value="A" class="mr-2 accent-amber-600"> A. were difficult for audiences to obtain.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L23" value="B" class="mr-2 accent-amber-600"> B. were given out free of charge.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L23" value="C" class="mr-2 accent-amber-600"> C. were seen as a kind of contract.</label>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <p class="font-medium mb-2">24. Maya feels their project should include an explanation of why companies of actors</p>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L24" value="A" class="mr-2 accent-amber-600"> A. promoted their own plays.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L24" value="B" class="mr-2 accent-amber-600"> B. performed plays outdoors.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L24" value="C" class="mr-2 accent-amber-600"> C. had to tour with their plays.</label>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <p class="font-medium mb-2">25. Finn and Maya both think that, compared to nineteenth-century programmes, those from the eighteenth century</p>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L25" value="A" class="mr-2 accent-amber-600"> A. were more original.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L25" value="B" class="mr-2 accent-amber-600"> B. were more colourful.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L25" value="C" class="mr-2 accent-amber-600"> C. were more informative.</label>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <p class="font-medium mb-2">26. Maya doesn't fully understand why, in the twentieth century,</p>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L26" value="A" class="mr-2 accent-amber-600"> A. very few theatre programmes were printed in the USA.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L26" value="B" class="mr-2 accent-amber-600"> B. British theatre programmes failed to develop for so long.</label>
+                            <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="L26" value="C" class="mr-2 accent-amber-600"> C. theatre programmes in Britain copied fashions from the USA.</label>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border-2 border-slate-200 rounded-lg p-6">
+                        <p class="font-semibold text-slate-700 mb-4">Questions 27-30: What comment is made about the programme for each of the following shows?<br>
+                        <span class="text-sm font-normal text-slate-500">Choose FOUR answers from the box and select the correct letter, A-F.</span></p>
+                        
+                        <div class="bg-amber-50 border border-amber-200 rounded p-4 mb-6">
+                            <h5 class="font-bold text-slate-800 mb-2 border-b border-amber-200 pb-1">Comments about programmes</h5>
+                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-slate-700">
+                                <li><strong>A.</strong> Its origin is somewhat controversial.</li>
+                                <li><strong>B.</strong> It is historically significant for a country.</li>
+                                <li><strong>C.</strong> It was effective at attracting audiences.</li>
+                                <li><strong>D.</strong> It is included in a recent project.</li>
+                                <li><strong>E.</strong> It contains insights into the show.</li>
+                                <li><strong>F.</strong> It resembles an artwork.</li>
+                            </ul>
+                        </div>
+
+                        <div class="space-y-3 max-w-md">
+                            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                                <span>27. Ruy Blas</span>
+                                <select id="L27" class="p-1 border border-slate-300 rounded bg-slate-50 focus:border-amber-500 outline-none w-20 text-center"><option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option></select>
+                            </div>
+                            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                                <span>28. Man of La Mancha</span>
+                                <select id="L28" class="p-1 border border-slate-300 rounded bg-slate-50 focus:border-amber-500 outline-none w-20 text-center"><option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option></select>
+                            </div>
+                            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                                <span>29. The Tragedy of Jane Shore</span>
+                                <select id="L29" class="p-1 border border-slate-300 rounded bg-slate-50 focus:border-amber-500 outline-none w-20 text-center"><option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option></select>
+                            </div>
+                            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                                <span>30. The Sailors' Festival</span>
+                                <select id="L30" class="p-1 border border-slate-300 rounded bg-slate-50 focus:border-amber-500 outline-none w-20 text-center"><option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PART 4 -->
+                <div class="mb-10">
+                    <div class="flex flex-col md:flex-row justify-between md:items-center mb-4 bg-slate-100 p-3 rounded border-l-4 border-amber-500">
+                        <h3 class="text-xl font-semibold text-slate-700">Part 4: Inclusive Design</h3>
+                        <div class="mt-2 md:mt-0 w-full md:w-1/2">
+                            <audio controls controlsList="nodownload"><source src="part4.m4a" type="audio/mp4"></audio>
+                        </div>
+                    </div>
+
+                    <p class="text-slate-600 mb-4 font-semibold text-sm">Complete the notes below. Write ONE WORD ONLY for each answer.</p>
+                    
+                    <div class="bg-white border border-slate-300 rounded-lg p-6 md:p-8">
+                        <h4 class="text-center font-bold text-xl mb-6 text-slate-800">Inclusive design</h4>
+                        
+                        <div class="mb-6">
+                            <h5 class="font-bold text-slate-700 mb-2">Definition</h5>
+                            <ul class="bullet-list text-slate-700">
+                                <li>Designing products that can be accessed by a diverse range of people without the need for any <span class="font-bold text-amber-700 mx-1">31</span><input type="text" id="L31" class="q-input"></li>
+                                <li>Not the same as universal design: that is design for everyone, including catering for people with <span class="font-bold text-amber-700 mx-1">32</span><input type="text" id="L32" class="q-input"> problems.</li>
+                            </ul>
+                        </div>
+
+                        <div class="mb-6">
+                            <h5 class="font-bold text-slate-700 mb-2">Examples of inclusive design</h5>
+                            <ul class="bullet-list text-slate-700">
+                                <li><span class="font-bold text-amber-700 mx-1">33</span><input type="text" id="L33" class="q-input"> which are adjustable, avoiding back or neck problems</li>
+                                <li><span class="font-bold text-amber-700 mx-1">34</span><input type="text" id="L34" class="q-input"> in public toilets which are easier to use</li>
+                                <li>To assist the elderly:
+                                    <ul class="sub-bullet-list mt-2 ml-4">
+                                        <li>designers avoid using <span class="font-bold text-amber-700 mx-1">35</span><input type="text" id="L35" class="q-input"> in interfaces</li>
+                                        <li>people can make commands using a mouse, keyboard or their <span class="font-bold text-amber-700 mx-1">36</span><input type="text" id="L36" class="q-input"></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h5 class="font-bold text-slate-700 mb-2">Impact of non-inclusive designs</h5>
+                            <ul class="bullet-list text-slate-700">
+                                <li class="font-semibold">Access
+                                    <ul class="sub-bullet-list font-normal mt-1 ml-4">
+                                        <li>Loss of independence for disabled people.</li>
+                                    </ul>
+                                </li>
+                                <li class="font-semibold mt-2">Safety
+                                    <ul class="sub-bullet-list font-normal mt-1 ml-4">
+                                        <li>Seatbelts are especially problematic for <span class="font-bold text-amber-700 mx-1">37</span><input type="text" id="L37" class="q-input"> women.</li>
+                                        <li>PPE jackets are often unsuitable because of the size of women's <span class="font-bold text-amber-700 mx-1">38</span><input type="text" id="L38" class="q-input"></li>
+                                        <li>PPE for female <span class="font-bold text-amber-700 mx-1">39</span><input type="text" id="L39" class="q-input"> officers dealing with emergencies is the worst.</li>
+                                    </ul>
+                                </li>
+                                <li class="font-semibold mt-2">Comfort in the workplace
+                                    <ul class="sub-bullet-list font-normal mt-1 ml-4">
+                                        <li>The <span class="font-bold text-amber-700 mx-1">40</span><input type="text" id="L40" class="q-input"> in offices is often too low for women.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-between items-center border-t border-slate-200 pt-6">
+                    <div id="listening-score-box" class="hidden bg-amber-50 border-2 border-amber-500 rounded-lg p-4 mb-4 md:mb-0 w-full md:w-1/2 shadow-sm">
+                        <p class="font-bold text-amber-800">Automated Cambridge Evaluation (Prorated):</p>
+                        <p id="listening-score-display" class="text-2xl font-bold text-amber-600 mt-1"></p>
+                        <p class="text-xs text-amber-700 mt-2 italic">Note: The algorithm is ruthless. Spelling must be exact.</p>
+                    </div>
+                    <button id="btn-grade-listen" onclick="gradeListening()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-lg shadow-md transition-all ml-auto">Submit & Grade Listening</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- READING SECTION -->
+        <section id="view-reading" class="hidden animate-fade-in">
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden relative">
+                
+                <div class="p-6 md:p-8 border-b border-slate-200 bg-slate-50 flex justify-between items-end">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-2 text-slate-800">Section 2: Reading <span class="text-lg font-normal text-amber-600 ml-2">(Passage 3 Only)</span></h2>
+                        <p class="text-slate-500 mb-0">You have 20 minutes to complete this advanced academic passage.</p>
+                    </div>
+                </div>
+
+                <!-- EVIDENCE TRACKER TOOLBAR -->
+                <div class="bg-slate-100 py-2 px-4 flex flex-wrap gap-3 items-center border-b border-slate-300 justify-center sticky top-0 z-10 shadow-sm">
+                    <span class="text-xs font-bold text-slate-600 uppercase tracking-wider mr-2">Evidence Tracker:</span>
+                    <button onclick="setHighlightColor('highlight-yellow', this)" class="toolbar-btn active-color w-6 h-6 rounded-full bg-yellow-200 border border-yellow-400 focus:outline-none transition-transform" title="Highlight Yellow"></button>
+                    <button onclick="setHighlightColor('highlight-teal', this)" class="toolbar-btn w-6 h-6 rounded-full bg-teal-200 border border-teal-400 focus:outline-none transition-transform" title="Highlight Teal"></button>
+                    <button onclick="setHighlightColor('highlight-rose', this)" class="toolbar-btn w-6 h-6 rounded-full bg-rose-200 border border-rose-400 focus:outline-none transition-transform" title="Highlight Rose"></button>
+                    <div class="w-px h-6 bg-slate-300 mx-2 hidden sm:block"></div>
+                    <button onclick="clearHighlights()" class="text-xs text-slate-500 hover:text-slate-800 transition-colors font-medium border border-slate-300 rounded px-2 py-1 bg-white hover:bg-slate-50">Clear All</button>
+                    <span id="highlight-status" class="ml-auto text-xs text-slate-400 italic hidden sm:inline-block">Select text to highlight</span>
+                </div>
+
+                <!-- PASSAGE 3 (Only Passage in Accelerated Mode) -->
+                <div class="block">
+                    <div class="flex flex-col lg:flex-row h-auto lg:h-[750px]">
+                        <div class="lg:w-1/2 p-6 lg:p-10 overflow-y-auto border-b lg:border-b-0 lg:border-r border-slate-200 bg-amber-50/20">
+                            <h4 class="text-2xl font-bold mb-6 text-center text-slate-800">The persistence and peril of misinformation</h4>
+                            <div class="reading-text selection-area">
+                                <p>Misinformation – both deliberately promoted and accidentally shared – is perhaps an inevitable part of the world in which we live, but it is not a new problem. People likely have lied to one another for roughly as long as verbal communication has existed. Deceiving others can offer an apparent opportunity to gain strategic advantage, to motivate others to action, or even to protect interpersonal bonds. Moreover, people inadvertently have been sharing inaccurate information with one another for thousands of years.</p>
+                                <p>However, we currently live in an era in which technology enables information to reach large audiences distributed across the globe, and thus the potential for immediate and widespread effects from misinformation now looms larger than in the past. Yet the means to correct misinformation might, over time, be found in those same patterns of mass communication and of the facilitated spread of information.</p>
+                                <p>The main worry regarding misinformation is its potential to unduly influence attitudes and behavior, leading people to think and act differently than they would if they were correctly informed, as suggested by the research teams of Stephan Lewandowsky of the University of Bristol and Elizabeth Marsh of Duke University, among others. In other words, we worry that misinformation might lead people to hold misperceptions (or false beliefs) and that these misperceptions, especially when they occur among large groups of people, may have detrimental, downstream consequences for health, social harmony, and the political climate.</p>
+                                <p>At least three observations related to misinformation in the contemporary mass-media environment warrant the attention of researchers, policy makers, and really everyone who watches television, listens to the radio, or reads information online. First of all, people who encounter misinformation tend to believe it, at least initially. Secondly, electronic and print media often do not block many types of misinformation before it appears in content available to large audiences. Thirdly, countering misinformation once it has enjoyed wide exposure can be a resource-intensive effort.</p>
+                                <p>Knowing what happens when people initially encounter misinformation holds tremendous importance for estimating the potential for subsequent problems. Although it is fairly routine for individuals to come across information that is false, the question of exactly how – and when – we mentally label information as true or false has garnered philosophical debate. The dilemma is neatly summarized by a contrast between how the 17th-century philosophers René Descartes and Baruch Spinoza described human information engagement, with conflicting predictions that only recently have been empirically tested in robust ways. Descartes argued that a person only accepts or rejects information after considering its truth or falsehood; Spinoza argued that people accept all encountered information (or misinformation) by default and then subsequently verify or reject it through a separate cognitive process. In recent decades, empirical evidence from the research teams of Erik Asp of the University of Chicago and Daniel Gilbert at Harvard University, among others, has supported Spinoza's account: people appear to encode all new information as if it were true, even if only momentarily, and later tag the information as being either true or false, a pattern that seems consistent with the observation that mental resources for skepticism physically reside in a different part of the brain than the resources used in perceiving and encoding.</p>
+                                <p>What about our second observation that misinformation often can appear in electronic or print media without being preemptively blocked? In support of this, one might consider the nature of regulatory structures in the United States: regulatory agencies here tend to focus on post hoc detection of broadcast information. Organizations such as the Food and Drug Administration (FDA) offer considerable monitoring and notification functions, but these roles typically do not involve preemptive censoring. The FDA oversees direct-to-consumer prescription drug advertising, for example, and has developed mechanisms such as the 'Bad Ad' program, through which people can report advertising in apparent violation of FDA guidelines on drug risks. Such programs, although laudable and useful, do not keep false advertising off the airwaves. In addition, even misinformation that is successfully corrected can continue to affect attitudes.</p>
+                                <p>This leads us to our third observation: a campaign to correct misinformation, even if rhetorically compelling, requires resources and planning to accomplish necessary reach and frequency. For corrective campaigns to be persuasive, audiences need to be able to comprehend them, which requires either effort to frame messages in ways that are accessible or effort to educate and sensitize audiences to the possibility of misinformation. That some audiences might be unaware of the potential for misinformation also suggests the utility of media literacy efforts as early as elementary school. Even with journalists and scholars pointing to the phenomenon of 'fake news', people do not distinguish between demonstrably false stories and those based in fact when scanning and processing written information.</p>
+                                <p>We live at a time when widespread misinformation is common. Yet at this time many people also are passionately developing potential solutions and remedies. The journey forward undoubtedly will be a long and arduous one. Future remedies will require not only continued theoretical consideration but also the development and maintenance of consistent monitoring tools – and a recognition among fellow members of society that claims which find prominence in the media that are insufficiently based in scientific consensus and social reality should be countered. Misinformation arises as a result of human fallibility and human information needs. To overcome the worst effects of the phenomenon, we will need coordinated efforts over time, rather than any singular one-time panacea we could hope to offer.</p>
+                            </div>
+                        </div>
+                        <div class="lg:w-1/2 p-6 lg:p-10 overflow-y-auto bg-white">
+                            
+                            <div class="bg-slate-100 rounded px-3 py-1 inline-block mb-4 text-sm font-semibold text-slate-700">Questions 27-30</div>
+                            <div class="space-y-6 mb-8 text-sm">
+                                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                                    <p class="font-medium mb-2">27. What point does the writer make about misinformation in the first paragraph?</p>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R27" value="A" class="mr-2 accent-amber-600"> A. Misinformation is a relatively recent phenomenon.</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R27" value="B" class="mr-2 accent-amber-600"> B. Some people find it easy to identify misinformation.</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R27" value="C" class="mr-2 accent-amber-600"> C. Misinformation changes as it is passed from one person to another.</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R27" value="D" class="mr-2 accent-amber-600"> D. There may be a number of reasons for the spread of misinformation.</label>
+                                </div>
+                                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                                    <p class="font-medium mb-2">28. What does the writer say about the role of technology?</p>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R28" value="A" class="mr-2 accent-amber-600"> A. It may at some point provide us with a solution to misinformation.</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R28" value="B" class="mr-2 accent-amber-600"> B. It could fundamentally alter the way in which people regard information.</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R28" value="C" class="mr-2 accent-amber-600"> C. It has changed the way in which organisations use misinformation.</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R28" value="D" class="mr-2 accent-amber-600"> D. It has made it easier for people to check whether information is accurate.</label>
+                                </div>
+                                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                                    <p class="font-medium mb-2">29. What is the writer doing in the fourth paragraph?</p>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R29" value="A" class="mr-2 accent-amber-600"> A. comparing the different opinions people have of misinformation</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R29" value="B" class="mr-2 accent-amber-600"> B. explaining how the effects of misinformation have changed over time</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R29" value="C" class="mr-2 accent-amber-600"> C. outlining which issues connected with misinformation are significant today</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R29" value="D" class="mr-2 accent-amber-600"> D. describing the attitude of policy makers towards misinformation in the media</label>
+                                </div>
+                                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                                    <p class="font-medium mb-2">30. What point does the writer make about regulation in the USA?</p>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R30" value="A" class="mr-2 accent-amber-600"> A. The guidelines issued by the FDA need to be simplified.</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R30" value="B" class="mr-2 accent-amber-600"> B. Regulation does not affect people's opinions of new prescription drugs.</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R30" value="C" class="mr-2 accent-amber-600"> C. The USA has more regulatory bodies than most other countries.</label>
+                                    <label class="block cursor-pointer hover:bg-slate-100 p-1 rounded"><input type="radio" name="R30" value="D" class="mr-2 accent-amber-600"> D. Regulation fails to prevent misinformation from appearing in the media.</label>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-100 rounded px-3 py-1 inline-block mb-4 text-sm font-semibold text-slate-700">Questions 31-36</div>
+                            <p class="mb-4 text-sm text-slate-600">Complete the summary using the list of phrases, A-J.</p>
+                            <div class="bg-slate-50 border border-slate-200 rounded p-4 mb-6 text-sm grid grid-cols-2 gap-2 text-slate-700 font-semibold">
+                                <div>A. constant conflict</div><div>B. additional evidence</div>
+                                <div>C. different locations</div><div>D. experimental subjects</div>
+                                <div>E. short period</div><div>F. extreme distrust</div>
+                                <div>G. frequent exposure</div><div>H. mental operation</div>
+                                <div>I. dubious reason</div><div>J. different ideas</div>
+                            </div>
+                            <div class="text-sm text-slate-700 leading-loose">
+                                Although people have <select id="R31" class="p-1 border border-slate-300 rounded inline-block focus:border-amber-500 outline-none"><option></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select> (31) to misinformation, there is debate about precisely how and when we label something as true or untrue. The philosophers Descartes and Spinoza had <select id="R32" class="p-1 border border-slate-300 rounded inline-block focus:border-amber-500 outline-none"><option></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select> (32) about how people engage with information. While Descartes believed that people accept or reject information after considering whether it is true or not, Spinoza argued that people accepted all information they encountered (and by default misinformation) and did not verify or reject it until afterwards. Moreover, Spinoza believed that a distinct <select id="R33" class="p-1 border border-slate-300 rounded inline-block focus:border-amber-500 outline-none"><option></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select> (33) is involved in these stages. Recent research has provided <select id="R34" class="p-1 border border-slate-300 rounded inline-block focus:border-amber-500 outline-none"><option></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select> (34) for Spinoza's theory and it would appear that people accept all encountered information as if it were true, even if this is for an extremely <select id="R35" class="p-1 border border-slate-300 rounded inline-block focus:border-amber-500 outline-none"><option></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select> (35), and do not label the information as true or false until later. This is consistent with the fact that the resources for scepticism and the resources for perceiving and encoding are in <select id="R36" class="p-1 border border-slate-300 rounded inline-block focus:border-amber-500 outline-none"><option></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option></select> (36) in the brain.
+                            </div>
+                            
+                            <div class="mt-8">
+                                <div class="bg-slate-100 rounded px-3 py-1 inline-block mb-4 text-sm font-semibold text-slate-700">Questions 37-40</div>
+                                <p class="mb-4 text-sm text-slate-600">Do the following statements agree with the claims of the writer? Write YES, NO, or NOT GIVEN.</p>
+                                <div class="space-y-4 mb-8">
+                                    <div class="flex flex-col sm:flex-row sm:items-start gap-3 border-b border-slate-100 pb-3">
+                                        <select id="R37" class="p-1 border border-slate-300 rounded bg-slate-50 w-full sm:w-28 shrink-0 focus:border-amber-500 outline-none"><option></option><option>YES</option><option>NO</option><option>NOT GIVEN</option></select>
+                                        <p class="text-slate-700 text-sm">37. Campaigns designed to correct misinformation will fail to achieve their purpose if people are unable to understand them.</p>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row sm:items-start gap-3 border-b border-slate-100 pb-3">
+                                        <select id="R38" class="p-1 border border-slate-300 rounded bg-slate-50 w-full sm:w-28 shrink-0 focus:border-amber-500 outline-none"><option></option><option>YES</option><option>NO</option><option>NOT GIVEN</option></select>
+                                        <p class="text-slate-700 text-sm">38. Attempts to teach elementary school students about misinformation have been opposed.</p>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row sm:items-start gap-3 border-b border-slate-100 pb-3">
+                                        <select id="R39" class="p-1 border border-slate-300 rounded bg-slate-50 w-full sm:w-28 shrink-0 focus:border-amber-500 outline-none"><option></option><option>YES</option><option>NO</option><option>NOT GIVEN</option></select>
+                                        <p class="text-slate-700 text-sm">39. It may be possible to overcome the problem of misinformation in a relatively short period.</p>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row sm:items-start gap-3 border-b border-slate-100 pb-3">
+                                        <select id="R40" class="p-1 border border-slate-300 rounded bg-slate-50 w-full sm:w-28 shrink-0 focus:border-amber-500 outline-none"><option></option><option>YES</option><option>NO</option><option>NOT GIVEN</option></select>
+                                        <p class="text-slate-700 text-sm">40. The need to keep up with new information is hugely exaggerated in today's world.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 border-t border-slate-200 bg-slate-50 flex flex-col md:flex-row justify-between items-center">
+                    <div id="reading-score-box" class="hidden bg-amber-50 border-2 border-amber-500 rounded-lg p-4 w-full md:w-1/2 mb-4 md:mb-0 shadow-sm">
+                        <p class="font-bold text-amber-800">Automated Cambridge Evaluation (Prorated):</p>
+                        <p id="reading-score-display" class="text-2xl font-bold text-amber-600 mt-1"></p>
+                    </div>
+                    <button id="btn-grade-read" onclick="gradeReading()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-lg shadow-md transition-all ml-auto">Submit & Grade Reading</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- WRITING SECTION -->
+        <section id="view-writing" class="hidden animate-fade-in">
+            <div class="bg-white rounded-xl shadow-sm p-6 md:p-10 border border-slate-200">
+                <div class="flex items-center gap-4 mb-6 border-b pb-4">
+                    <span class="text-4xl text-amber-600">&#128221;</span>
+                    <div>
+                        <h2 class="text-3xl font-bold text-slate-800">Section 3: Writing <span class="text-lg font-normal text-amber-600 ml-2">(Task 2 Only)</span></h2>
+                        <p class="text-slate-500">Responses are recorded securely via Google Workspace.</p>
+                    </div>
+                </div>
+
+                <!-- QUICK MODE BANNER -->
+                <div class="mb-6 p-5 bg-amber-50 border-l-4 border-amber-500 rounded shadow-sm text-left">
+                    <h4 class="font-bold text-amber-800 text-lg flex items-center gap-2 mb-1">
+                        <span class="text-2xl">⚡</span> ACCELERATED MODE ACTIVE
+                    </h4>
+                    <p class="text-amber-700 font-medium">
+                        Since you lack the fortitude for the full marathon today, kindly <strong class="text-amber-900 bg-amber-200 px-1 rounded">ignore Task 1</strong> inside the form below. Scroll directly to Task 2 and compose your discursive essay.
+                    </p>
+                </div>
+
+                <div class="w-full bg-slate-50 rounded-xl border-2 border-dashed border-amber-500 overflow-hidden relative" style="height: 800px;">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf7szbrfkBgSfgCR_UDtj4VIM-VaU0f1Ril6tEouCfUG26kkg/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">
+                        <div class="p-10 text-center font-bold text-slate-500">If you are reading this, your Google Form link is broken or missing.</div>
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- SPEAKING SECTION -->
+        <section id="view-speaking" class="hidden animate-fade-in">
+            <div class="bg-white rounded-xl shadow-sm p-6 md:p-12 border border-slate-200 text-center max-w-3xl mx-auto mt-10">
+                <div class="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-slate-200">
+                    <span class="text-5xl text-slate-700">&#128483;</span>
+                </div>
+                <h2 class="text-4xl font-bold mb-4 text-slate-800">Section 4: Speaking Evaluation</h2>
+                <p class="text-slate-600 mb-8 text-lg leading-relaxed px-4">
+                    The Speaking module is a comprehensive, live evaluation of your linguistic fluency, lexical resource, and communicative coherence. To maintain the integrity of the testing schedule, formal booking is required.
+                </p>
+                
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-8 mb-8 text-center shadow-sm">
+                    <h3 class="font-semibold text-slate-800 text-xl mb-3">Scheduling Mandate</h3>
+                    <p class="text-slate-600 text-lg mb-4">Candidates must secure their evaluation slot no later than:</p>
+                    <div id="dynamic-deadline" class="text-2xl font-bold text-amber-700 bg-white inline-block px-8 py-4 rounded-lg border border-amber-100 shadow-sm">Calculating...</div>
+                    <p class="text-slate-500 text-sm mt-5">Please ensure you are prepared for a rigorous academic interview. Unscheduled candidates cannot be assessed.</p>
+                </div>
+                
+                <a href="https://calendar.app.google/cTqqeta4ZxrKHcEh8" target="_blank" class="inline-flex bg-slate-900 hover:bg-slate-800 text-white font-medium py-4 px-10 rounded-lg shadow-md transition-all text-lg items-center justify-center gap-3 w-full sm:w-auto">
+                    <span>&#128197;</span> Proceed to Calendar Booking
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-6 text-center text-sm z-10 relative mt-auto">
+        <p>IELTS MasterClass Platform &copy; 2026. Custom Anthroposophical Architecture.</p>
+    </footer>
+
+    <script>
+        const views = ['dashboard', 'listening', 'reading', 'writing', 'speaking'];
+        
+        function switchTab(tabId) {
+            views.forEach(view => {
+                const el = document.getElementById('view-' + view);
+                if(el) el.classList.add('hidden');
+                
+                const btn = document.getElementById('btn-' + view);
+                if(btn) btn.classList.remove('active', 'bg-amber-600', 'text-white');
+            });
+            
+            document.getElementById('view-' + tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).classList.add('active');
+            
+            if(tabId === 'speaking') setDynamicDeadline();
+        }
+
+        function setDynamicDeadline() {
+            const today = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = today.toLocaleDateString('en-US', options);
+            document.getElementById('dynamic-deadline').innerHTML = `${formattedDate} <br><span class="text-xl mt-1 block font-normal text-slate-600">at 11:59 PM Local Time</span>`;
+        }
+
+        // --- EVIDENCE TRACKER (HIGHLIGHTER) LOGIC ---
+        let currentHighlightColor = 'highlight-yellow';
+
+        function setHighlightColor(colorClass, btnElement) {
+            currentHighlightColor = colorClass;
+            document.querySelectorAll('.toolbar-btn').forEach(btn => btn.classList.remove('active-color'));
+            btnElement.classList.add('active-color');
+            const status = document.getElementById('highlight-status');
+            status.innerText = 'Ready to highlight...';
+            status.classList.remove('text-rose-500');
+            status.classList.add('text-slate-400');
+        }
+
+        function clearHighlights() {
+            const highlights = document.querySelectorAll('.highlight-yellow, .highlight-teal, .highlight-rose');
+            highlights.forEach(h => {
+                const parent = h.parentNode;
+                while (h.firstChild) parent.insertBefore(h.firstChild, h);
+                parent.removeChild(h);
+            });
+            document.querySelectorAll('.selection-area').forEach(area => area.normalize());
+        }
+
+        function handleHighlightEvent(e) {
+            if (!e.target.closest('.selection-area')) return;
+            
+            setTimeout(() => {
+                const selection = window.getSelection();
+                if (!selection || selection.isCollapsed || selection.toString().trim() === '') return;
+
+                const range = selection.getRangeAt(0);
+                
+                try {
+                    const span = document.createElement('span');
+                    span.className = currentHighlightColor;
+                    range.surroundContents(span);
+                    selection.removeAllRanges();
+                } catch (err) {
+                    const status = document.getElementById('highlight-status');
+                    status.innerText = 'Please highlight within a single paragraph.';
+                    status.classList.remove('text-slate-400');
+                    status.classList.add('text-rose-500');
+                    setTimeout(() => {
+                        status.innerText = 'Select text to highlight';
+                        status.classList.remove('text-rose-500');
+                        status.classList.add('text-slate-400');
+                    }, 3000);
+                    selection.removeAllRanges();
+                }
+            }, 50);
+        }
+
+        document.addEventListener('mouseup', handleHighlightEvent);
+        document.addEventListener('touchend', handleHighlightEvent);
+
+
+        // --- THE RUTHLESS AUTOMATON: GRADING LOGIC (PRORATED FOR QUICK MODE) ---
+        
+        function cleanText(txt) {
+            return (txt || '').toString().trim().toLowerCase();
+        }
+
+        // Prorated estimation for quick mode
+        function calculateQuickBand(score, type) {
+            if(type === 'listening') { // Out of 20 (Parts 3 & 4)
+                if(score === 20) return '9.0'; if(score >= 19) return '8.5'; if(score >= 18) return '8.0';
+                if(score >= 17) return '7.5'; if(score >= 15) return '7.0'; if(score >= 14) return '6.5';
+                if(score >= 13) return '6.0'; if(score >= 11) return '5.5'; if(score >= 10) return '5.0'; return '< 5.0';
+            } else { // Out of 14 (Reading P3 is historically harder, curves are generous but strict)
+                if(score >= 14) return '9.0'; if(score >= 13) return '8.5'; if(score >= 12) return '8.0';
+                if(score >= 11) return '7.5'; if(score >= 9) return '7.0'; if(score >= 8) return '6.5';
+                if(score >= 7) return '6.0'; if(score >= 6) return '5.5'; if(score >= 5) return '5.0'; return '< 5.0';
+            }
+        }
+
+        // Keys only need to contain Q21-40 for Listening, Q27-40 for Reading.
+        const listeningKey = {
+            21: ['b'], 22: ['a'], 23: ['c'], 24: ['a'], 25: ['c'], 26: ['b'],
+            27: ['f'], 28: ['e'], 29: ['b'], 30: ['d'],
+            31: ['adaptation'], 32: ['cognitive'], 33: ['desks'], 34: ['taps'], 35: ['blue'],
+            36: ['voice'], 37: ['pregnant'], 38: ['shoulders'], 39: ['police'], 40: ['temperature']
+        };
+
+        const readingKey = {
+            27: ['d'], 28: ['a'], 29: ['c'], 30: ['d'], 31: ['g'], 32: ['j'], 33: ['h'], 34: ['b'],
+            35: ['e'], 36: ['c'], 37: ['yes'], 38: ['not given'], 39: ['no'], 40: ['not given']
+        };
+
+        function gradeListening() {
+            let score = 0;
+            const maxScore = 20;
+            
+            // Grade Q21-26 Radios
+            for(let i=21; i<=26; i++) {
+                let checked = document.querySelector(`input[name="L${i}"]:checked`);
+                if(checked && listeningKey[i].includes(cleanText(checked.value))) score++;
+            }
+            // Grade Q27-40 Selects/Inputs
+            for(let i=27; i<=40; i++) {
+                let val = cleanText(document.getElementById('L'+i)?.value);
+                if(listeningKey[i].includes(val)) score++;
+            }
+            
+            document.getElementById('listening-score-display').innerHTML = `
+                <div class="mt-2 mb-4">
+                    <span class="text-5xl font-black text-amber-700">${score}</span><span class="text-2xl text-amber-600 font-bold"> / ${maxScore}</span>
+                </div>
+                <div class="inline-block bg-amber-600 text-white px-4 py-1 rounded-full font-bold uppercase tracking-widest text-sm mb-6">
+                    Estimated Band: ${calculateQuickBand(score, 'listening')}
+                </div>
+                
+                <div class="p-5 bg-rose-50 border-l-4 border-rose-600 rounded-r shadow-inner text-left">
+                    <p class="text-rose-800 font-black text-lg flex items-center gap-2 mb-2">
+                        <span class="text-2xl">📸</span> MANDATORY EVIDENCE REQUIRED
+                    </p>
+                    <p class="text-rose-700 text-sm leading-relaxed font-medium">
+                        This system operates on a secure, closed loop and <strong>does not</strong> save data to a central server. You must take a clear screenshot of this entire box right now and send it to Ms. Châu via Zalo (0911303150). Without this screenshot, your score will be recorded as 0.0.
+                    </p>
+                </div>
+            `;
+            document.getElementById('listening-score-box').classList.remove('hidden');
+            document.getElementById('btn-grade-listen').classList.add('hidden');
+        }
+
+        function gradeReading() {
+            let score = 0;
+            const maxScore = 14;
+            
+            // Grade Q27-Q30 Radios
+            for(let i=27; i<=30; i++) {
+                let checked = document.querySelector(`input[name="R${i}"]:checked`);
+                if(checked && readingKey[i] && readingKey[i].includes(cleanText(checked.value))) score++;
+            }
+            // Grade Q31-Q40 Selects
+            for(let i=31; i<=40; i++) {
+                let val = cleanText(document.getElementById('R'+i)?.value);
+                if(readingKey[i] && readingKey[i].includes(val)) score++;
+            }
+
+            document.getElementById('reading-score-display').innerHTML = `
+                <div class="mt-2 mb-4">
+                    <span class="text-5xl font-black text-amber-700">${score}</span><span class="text-2xl text-amber-600 font-bold"> / ${maxScore}</span>
+                </div>
+                <div class="inline-block bg-amber-600 text-white px-4 py-1 rounded-full font-bold uppercase tracking-widest text-sm mb-6">
+                    Estimated Band: ${calculateQuickBand(score, 'reading')}
+                </div>
+                
+                <div class="p-5 bg-rose-50 border-l-4 border-rose-600 rounded-r shadow-inner text-left">
+                    <p class="text-rose-800 font-black text-lg flex items-center gap-2 mb-2">
+                        <span class="text-2xl">📸</span> MANDATORY EVIDENCE REQUIRED
+                    </p>
+                    <p class="text-rose-700 text-sm leading-relaxed font-medium">
+                        This system operates on a secure, closed loop and <strong>does not</strong> save data to a central server. You must take a clear screenshot of this entire box right now and send it to Ms. Châu via Zalo (0911303150). Without this screenshot, your score will be recorded as 0.0.
+                    </p>
+                </div>
+            `;
+            document.getElementById('reading-score-box').classList.remove('hidden');
+            document.getElementById('btn-grade-read').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
